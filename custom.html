@@ -118,6 +118,41 @@
 		display: block;
 	}
 
+
+	/*------------------for popup--------------------------*/
+	.modal {
+  		display: none; 
+  		position: fixed; 
+  		left: 0;
+  		top: 0;
+  		width: 100%; height: 100%; 
+  		background-color: rgba(0,0,0,0.4); 
+  		padding-top: 100px;
+  		text-align: center; font-size: 1.3em; 
+	}
+
+	.modal-content {
+  		background-color: #fefefe;
+  		margin: auto;
+  		padding: 20px;
+  		border: 1px solid #888;
+  		width: 80%;
+	}
+
+	.close {
+  		color: #aaaaaa;
+  		float: right;
+  		font-size: 28px;
+  		font-weight: bold;
+	}
+
+	.close:hover,
+	.close:focus {
+  		color: red;
+  		text-decoration: none;
+  		cursor: pointer;
+	}
+
 	
 
 	/*--------------------for @media here----------------------*/
@@ -243,6 +278,7 @@
 			<option value="2">Impact</option>
 			<option value="3">Serif</option>
 		</select>
+		<button id="submitBtn">Submit to recipient</button>
 		<br>
 
 	</div>	
@@ -264,6 +300,17 @@
 		</div>
 	</div>
 </div>
+
+
+<!----------------------------popup here--------------------------->
+
+<div id="popup" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Your card is submitted to the recipient!</p>
+  </div>
+</div>
+
 
 <footer>
 	<h3>@copyright 2021</h3>
@@ -356,7 +403,10 @@
 		var display_d = document.getElementById("d1");
 		var display_t = document.getElementById("t1");
 		var display_h = document.getElementById("h1");
+		
 
+
+		//---------------this will display to preview card when typing on the input----------------
 		n.addEventListener('input', letter =>{display_n.textContent = letter.target.value;})
 		e.addEventListener('input', letter =>{display_e.textContent = letter.target.value;})
 		a.addEventListener('input', letter =>{display_a.textContent = letter.target.value;})
@@ -375,20 +425,10 @@
 		localStorage.setItem("date",display_d.textContent)
 		localStorage.setItem("time",display_t.textContent)
 		localStorage.setItem("host",display_h.textContent)
-
-		alert("content saved!");
 	}
 	
 
 	function loadContent(){
-		var n = document.getElementById("name");
-		var e = document.getElementById("event");
-		var a = document.getElementById("address");
-		var cty = document.getElementById("city");
-		var ctry = document.getElementById("country");
-		var d = document.getElementById("date");
-		var t = document.getElementById("time");
-		var h = document.getElementById("host");
 
 		//----------display content when click load------------
 		n.value = localStorage.getItem("name");
@@ -414,6 +454,27 @@
 	function clearContent(){
 		window.location.reload();
 	}
+
+
+	//-----------------------modal box-----------------------
+
+		var modal = document.getElementById("popup");
+		var btn = document.getElementById("submitBtn");
+		var span = document.getElementsByClassName("close")[0];
+
+		btn.onclick = function() {
+  		modal.style.display = "block";
+		}
+
+		span.onclick = function() {
+ 		 modal.style.display = "none";
+		}
+
+		window.onclick = function(event) {
+  			if (event.target == modal) {
+    		modal.style.display = "none";
+  			}
+		}
 
 
 
