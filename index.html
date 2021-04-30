@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Homepage</title>
+</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+<style type="text/css">
+	/*------main content for top here ( body )------*/
+	.top{
+		height: 50vh;
+		background-image: url("images/bg.jpg");
+		flex: 100%;
+	}
+
+	.top h1{
+		text-align: center; font-size: 4em;
+		margin-top: 80px;
+		background: -webkit-linear-gradient(black, #1F201F);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.scroll{
+		max-width: 300px; max-height: 100px;
+		margin-top: 60px; margin-bottom: 60px; margin-left: auto; margin-right: auto;
+		border: 2px dashed black; border-radius: 10px;
+		text-align: center;
+	}
+
+	.scroll a{
+		text-decoration: none;
+		color: #1F201F; font-size: 2em; 
+	}
+
+	.scroll:hover{
+		background-color: yellow;
+		border: 2px solid yellow;
+		color: black;
+	}
+
+	/*------main content for mid here ( body )------*/
+
+	.mid{
+		width: 100%; height: 90vh;
+		background-color: #1F201F;
+		display: grid; grid-gap: 2px;
+		grid-template-areas: 
+		'one two three';
+	}
+
+	.box_one, .box_two, .box_three{
+		width: 500px; height: 440px;
+		border: 2px solid yellow; border-radius: 10px;
+		margin-top: 200px; margin-left: 60px;
+		text-align: center;
+	}
+
+	.pic_one, .pic_two{
+		max-width: 200px;
+		margin-top: 40px;
+		padding: 10px;
+		transition: transform 0.3s ease-out;
+	}
+
+	.pic_one:hover{
+		transform: rotate(-5deg);
+	}
+
+	.pic_two:hover{
+		transform: rotate(5deg);
+	}
+
+	.cards{
+		text-decoration: none;
+		color: white; font-weight: bold; font-size: 2.5em;
+		margin-top: 20px;
+		display: block;
+	}
+
+	.cards:hover{
+		background-color: yellow;
+		color: black;
+	}
+
+	/*------main content for bottom here ( body )------*/
+
+	.bottom{
+		height: 90vh;
+		background-image: url("images/bg.jpg");
+		background-repeat: no-repeat;
+	}
+
+	.tuto{
+		width: 400px; height: 500px;
+		border: 2px dashed black; border-radius: 10px;
+		display: inline-block;
+		position: relative;
+		top: 170px; left: 45px;
+		margin-left: 40px;
+	}
+
+	/*-------@media screen for mobile platform here-----*/
+
+	@media screen and (max-width: 600px){
+
+		.top h1{
+			margin-top: 40px;
+			font-size: 1.8em;
+		}
+
+		.scroll a{
+			margin-bottom: 10px;
+		}
+
+		.mid{
+			height: 150vh;
+			grid-template-areas: 
+			"one"
+			"two"
+			"three";
+		}
+
+		.box_one, .box_two, .box_three{
+			width: 300px; height: 250px;
+			margin-top: 60px; margin-left: auto; margin-right: auto;
+			display: block;
+		}
+
+		.pic_one, .pic_two{
+			max-width: 100px;
+		}
+
+		.cards{
+			font-size: 1.8em;
+		}
+
+		.bottom{
+			height: 185vh;
+
+		}
+
+		.tuto{
+			width: 240px; height: 300px;
+			top: 30px; left: 20px;
+			margin-top: 30px; margin-left: auto; margin-right: auto;
+			display: block;
+		}
+
+	}
+</style>
+<body>
+<header>
+	<img src="images/lg.png">
+	<a href="index.html">Home</a>
+	<a href="custom.html">Customization</a>
+	<a href="#">Favourite</a>
+</header>
+<div class="wrap">
+	<!-------------------------------top box here---------------------------->
+	<div class="top">
+		<h1>Welcome to our invitation card maker</h1>
+		<div class="scroll"><a href="#scroll">Click here for tutorial</a></div>
+		<br>
+
+	<!------------------------------mid box here----------------------------->
+		<div class="mid">
+
+			<!-----------------box left here---------------->
+			<div class="box_one" style="grid-area:one">
+				<img src="images/v1.png" class="pic_one">
+				<img src="images/v2.png" class="pic_two">
+				<a href="#" class="cards">Formal Cards</a>
+			</div>
+
+			<!-----------------box middle here-------------->
+			<div class="box_two" style="grid-area:two">
+				<img src="images/card1.jpg" class="pic_one">
+				<img src="images/card2.jpg" class="pic_two">
+				<a href="#" class="cards">Informal Cards</a>
+			</div>
+
+			<!-----------------box right here--------------->
+			<div class="box_three" style="grid-area:three">
+				<img src="images/card1.jpg" class="pic_one">
+				<img src="images/card2.jpg" class="pic_two">
+				<a href="#" class="cards">Corporate Cards</a>
+			</div>
+		</div>
+	<!----------------------------bottom box here----------------------------->
+		<div class="bottom" id="scroll">
+
+			<div class="tuto">
+				
+			</div>
+
+			<div class="tuto">
+				
+			</div>
+
+			<div class="tuto">
+				
+			</div>
+
+			<div class="tuto">
+				
+			</div>
+		</div>
+	</div>	
+</div>
+
+<footer>
+	<h3>@copyright 2021</h3>
+</footer>
+</body>
+</html>

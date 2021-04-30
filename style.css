@@ -1,0 +1,87 @@
+/*----------------Affect all--------------*/
+
+	*{
+		box-sizing: border-box;
+	}
+
+	html{
+		scroll-behavior: smooth;
+	}
+
+	body{
+		margin:0;
+		background-image: url("images/bg.jpg"); 
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+	}
+
+	/*------Header and footer style here------*/
+
+	header,footer{
+		background-color: #1F201F;
+		height: 7vh;
+
+	}
+
+	header img{
+		max-width: 180px;
+		margin-left: 50px;
+	}
+
+	header a{
+		margin-top: 20px; margin-bottom: 10px; margin-right: 40px;
+		padding: repeat(2,5px);
+		display: block;
+		color: white;
+		text-decoration: none; font-size: 1.2em;
+		float: right;
+	}
+
+	header a:hover{
+		background-color: yellow;
+		border-radius: 10px;
+		color: black
+	}
+
+	footer{
+		width: 100%;
+		position: fixed; bottom: 0;
+		color: white;
+		text-align: center;
+	}
+
+	footer h3{
+		margin-top: 20px;
+	}
+
+	.wrap{
+		display: flex; flex: wrap;
+	}
+
+	@media screen and (max-width: 600px){
+
+		/*--------------header here---------------*/
+
+		header{
+			height: 28vh;
+		}
+
+		header a{
+			float: none;
+			text-align: center;
+			margin-left: auto; margin-right: auto;
+		}
+
+		header img{
+			max-width: 200px;
+			margin-left: auto; margin-right: auto;
+			display: block;
+		}
+
+		/*------------main content here-----------*/
+
+		.wrap{
+			flex-direction: column;
+		}
+
+	}

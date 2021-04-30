@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Custom page</title>
+</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+<style type="text/css">
+	/*--------------------for side here----------------------*/
+	.side{
+		background-image: url("images/nav.jpg");
+		flex: 20%;
+	}
+
+	.side h2{
+		text-align: center; color: black;
+		padding-top: 10px; padding-bottom: 10px;
+	}
+
+	.list_box{
+		width: 340px; height: 220px;
+		border: 2px dashed black; border-radius: 10px;
+		margin-left: auto; margin-right: auto;
+		display: block;
+	}
+
+	.sticker{
+		max-width: 330px;
+		margin-top: 10px; margin-left: auto; margin-right: auto;
+		display: block;
+	}
+
+	.enterKey{
+		width: 250px; height: 380px;
+		border: 2px dashed;
+		display: block;
+		margin-top: 20px; margin-left: auto; margin-right: auto;
+	}
+
+	.enterKey input, button{
+		margin-top: 10px; margin-left: auto; margin-right: auto;
+		display: block;
+	}
+
+	#bgColor,  #fontColor, .colorLabel{
+		margin-top: 10px; margin-left: auto; margin-right: auto;
+		display: block;
+		text-align: center;
+	}
+
+	#saveBtn:hover{
+		color: darkgreen;
+		background-color: lightgreen;
+		border-radius: 10px;
+	}
+
+	#loadBtn:hover{
+		color: darkblue;
+		background-color: cyan;
+		border-radius: 10px;
+	}
+
+	#clearBtn:hover{
+		color: yellow;
+		background-color: red;
+		border-radius: 10px;
+	}
+
+	/*--------------------for main here----------------------*/
+	.main{
+		height: 110vh;
+		flex: 85%;
+	}
+
+	.edit_box{
+		width: 600px; height: 700px;
+		background-color: white;
+		background-size: 100% 100%;
+		margin-top: 50px; margin-left: auto; margin-right: auto;
+		display: block;
+		border: 1px solid black;
+		text-align: center;
+	}
+
+	.edit_box h2{
+		margin-top: 110px; margin-left: auto; margin-right: auto;
+		display: block;
+	}
+
+
+	.sticker_box{
+		width: 410px; height: 100px;
+		margin-top: 10px; margin-left: auto; margin-right: auto;
+		display: block; z-index: 1;
+		background-size: 100% 100%;
+	}
+
+	.sticker_box:hover{
+		border: 1px dotted black;
+	}
+
+	.names{
+		margin-left: auto; margin-right: auto;
+		display: block;
+		width: 340px; border: none;
+		font-size: 1.2em;
+	}
+
+	.names[placeholder]:empty:before{
+		content: attr(placeholder);
+		color: #555;
+	}
+
+	#btn, #btn1{
+		margin-top: 20px;
+		margin-left: auto; margin-right: auto;
+		display: block;
+	}
+
+	
+
+	/*--------------------for @media here----------------------*/
+
+	@media screen and (max-width: 600px){
+
+		/*---------------------side here-----------------------*/
+
+		.sticker{
+			max-width: 250px;
+		}
+
+		.enterKey{
+			width: 520px; height: 175px;
+		}
+
+		.enterKey input,button{
+			margin-left: 10px;
+			display: inline-block;
+		}
+
+		#bgColor, #fontColor, .colorLabel ,#btn{
+			margin-left: 10px;
+			display: inline-block;
+		}
+
+		.side h2, .list_box{
+			display: none;
+		}
+
+		/*-------------------main here------------------------*/
+		.main{
+			margin-bottom: 60px;
+		}
+
+		.edit_box{
+			background-size: 100% 100%;
+			width: 400px; height: 500px;
+			margin-bottom: 30px;
+		}
+
+		.edit_box h2{
+			margin-top: 80px;
+			font-size: 0.7em;
+		}
+
+		.sticker_box{
+			width: 160px; height: 50px;
+		}
+
+		.names{
+			width: 200px;
+			font-size: 0.9em;
+		}
+	}
+
+</style>
+<body onload="fillContent()">
+<header>
+	<img src="images/lg.png">
+	<a href="index.html">Home</a>
+	<a href="#">Customization</a>
+	<a href="#">Favourite</a>
+</header>
+<div class="wrap">
+	<!----------------------side here--------------------->
+	<div class="side">
+
+		<!----------------------------------sticker here------------------------------------>
+
+		<h2>Stickers :</h2>
+		<div class="list_box">
+			<img src="images/g2.png" class="sticker" id="drag1" draggable="true" ondragstart="drag(event)">
+			<img src="images/g1.png" class="sticker" id="drag2" draggable="true" ondragstart="drag(event)">
+		</div>
+
+		<!-------------------------------------input button here-------------------------------------->
+
+		<div class="enterKey">
+		<input type="text" placeholder="Enter hosted by names" id="host">
+		<input type="text" placeholder="Enter recipient's name" id="name">
+		<input type="text" placeholder="Enter name of the event" id="event">
+		<input type="text" placeholder="Enter address with postal code" id="address">
+		<input type="text" placeholder="Enter city" id="city">
+		<input type="text" placeholder="Enter country" id="country">
+		<input type="date" placeholder="Enter date" id="date">
+		<input type="time" placeholder="Enter date" id="time">
+		
+
+		<!---------------------------------save and load button here----------------------------------->
+		<br>
+		<button onclick="saveContent()" id="saveBtn">Save as favourite content</button>
+		<button onclick="loadContent()" id="loadBtn">Load favourite content</button>
+		<button onclick="clearContent()" id="clearBtn">Clear favourite content</button>
+		</div>
+
+		<!--------------------------------color picker here----------------------------------->
+		
+		<!------------------- for background ----------------->
+		<input type="color" id="bgColor" value="#ffffff">
+		<label class="colorLabel">Background Color</label>
+
+		<!------------------ for font ----------------------->
+		<input type="color" id="fontColor" value="#000000">
+		<label class="colorLabel">Font Color</label>
+		
+
+
+		<!------------------------------------background change here---------------------------------->
+
+		<select onchange="styleChange(this.value)" id="btn">
+			<option value="0">Choose Background Theme</option>
+			<option value="1">Sports</option>
+			<option value="2">Parties</option>
+			<option value="3">Islamic</option>
+			<option value="4">Musics</option>
+		</select>
+
+		<!-------------------------------------font family here-------------------------------------->
+		<select onchange="fontChange(this.value)" id="btn1">
+			<option value="0">Change font family</option>
+			<option value="1">Arial</option>
+			<option value="2">Impact</option>
+			<option value="3">Serif</option>
+		</select>
+		<br>
+
+	</div>	
+
+	<!---------------------main here---------------------->
+
+	<div class="main">
+		<div class="edit_box" id="box">
+			<h2>السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</h2>
+			<div class="names" id="n1" style="text-align: center; margin-top: 10px;" placeholder="Enter recipient's name"></div>
+			<div class="sticker_box" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+			<div class="names" id="e1" style="text-align: center; margin-top: 10px;" placeholder="Enter name of the event"></div>
+			<div class="names" id="a1" style="text-align: center; margin-top: 20px;" placeholder="Enter address & postal code"></div>
+			<div class="names" id="cty1" style="text-align: center; margin-top: 10px;" placeholder="Enter city"></div>
+			<div class="names" id="ctry1" style="text-align: center; margin-top: 10px;" placeholder="Enter country"></div>
+			<div class="names" id="d1" style="text-align: center; margin-top: 30px;" placeholder="Enter date"></div>
+			<div class="names" id="t1" style="text-align: center; margin-top: 10px;" placeholder="Enter time"></div>
+			<div class="names" id="h1" style="text-align: center; margin-top: 30px;" placeholder="Enter hosted by names"></div>
+		</div>
+	</div>
+</div>
+
+<footer>
+	<h3>@copyright 2021</h3>
+</footer>
+</body>
+
+<script type="text/javascript">
+
+	// ------------drag and drop for sticker here----------------
+
+	function allowDrop(ev) {
+  	ev.preventDefault();
+	}
+
+	function drag(ev) {
+  	ev.dataTransfer.setData("text", ev.target.id);
+	}
+
+	function drop(ev) {
+  	ev.preventDefault();
+  	var data = ev.dataTransfer.getData("text");
+  	var isLeft = 'drag1' == data || "drag2" == data;
+  	var nodeCopy = document.getElementById(data).cloneNode(true);
+  	nodeCopy.id = "img" + ev.target.id;
+  	if (!isLeft) {
+    sourceNode = document.getElementById(data);
+    sourceNode.parentNode.removeChild(sourceNode);
+  	}
+  	ev.target.appendChild(nodeCopy);
+  	ev.stopPropagation();
+  	return false;
+	}
+
+	//---------------background image change-----------------------
+
+	function styleChange(value){
+		var bgImage = document.getElementById("box");
+		if (value==1){
+			bgImage.style.backgroundImage="url(images/v11.png)"
+		}
+		else if (value==2){
+			bgImage.style.backgroundImage="url(images/v10.png)"
+		}
+		else if (value==3){
+			bgImage.style.backgroundImage="url(images/v7.png)"
+		}
+		else if (value==4){
+			bgImage.style.backgroundImage="url(images/v12.png)"
+		} 
+	}
+
+	//---------------background color change------------------------
+
+	let cp = document.getElementById("bgColor");
+	let box = document.getElementById("box");
+	box.style.backgroundColor = cp.value;
+	cp.addEventListener("input", function(ev){
+	box.style.backgroundColor = ev.target.value;
+	},false);
+
+	//----------------------Font color change-----------------------
+
+	let cp1 = document.getElementById("fontColor");
+	let text = document.getElementById("box");
+	text.style.color = cp1.value;
+	cp1.addEventListener("input", function(ev){
+	text.style.color = ev.target.value;
+	},false);
+
+
+	//------------------------Change font family---------------------
+
+	
+	//----------------------localstorage here-----------------------
+
+		var n = document.getElementById("name");
+		var e = document.getElementById("event");
+		var a = document.getElementById("address");
+		var cty = document.getElementById("city");
+		var ctry = document.getElementById("country");
+		var d = document.getElementById("date");
+		var t = document.getElementById("time");
+		var h = document.getElementById("host");
+
+		var display_n = document.getElementById("n1");
+		var display_e = document.getElementById("e1");
+		var display_a = document.getElementById("a1");
+		var display_cty = document.getElementById("cty1");
+		var display_ctry = document.getElementById("ctry1");
+		var display_d = document.getElementById("d1");
+		var display_t = document.getElementById("t1");
+		var display_h = document.getElementById("h1");
+
+		n.addEventListener('input', letter =>{display_n.textContent = letter.target.value;})
+		e.addEventListener('input', letter =>{display_e.textContent = letter.target.value;})
+		a.addEventListener('input', letter =>{display_a.textContent = letter.target.value;})
+		cty.addEventListener('input', letter =>{display_cty.textContent = letter.target.value;})
+		ctry.addEventListener('input', letter =>{display_ctry.textContent = letter.target.value;})
+		d.addEventListener('input', letter =>{display_d.textContent = letter.target.value;})
+		t.addEventListener('input', letter =>{display_t.textContent = letter.target.value;})
+		h.addEventListener('input', letter =>{display_h.textContent = letter.target.value;})
+
+	function saveContent(){
+		localStorage.setItem("name",display_n.textContent)
+		localStorage.setItem("event",display_e.textContent)
+		localStorage.setItem("address",display_a.textContent)
+		localStorage.setItem("city",display_cty.textContent)
+		localStorage.setItem("country",display_ctry.textContent)
+		localStorage.setItem("date",display_d.textContent)
+		localStorage.setItem("time",display_t.textContent)
+		localStorage.setItem("host",display_h.textContent)
+
+		alert("content saved!");
+	}
+	
+
+	function loadContent(){
+		var n = document.getElementById("name");
+		var e = document.getElementById("event");
+		var a = document.getElementById("address");
+		var cty = document.getElementById("city");
+		var ctry = document.getElementById("country");
+		var d = document.getElementById("date");
+		var t = document.getElementById("time");
+		var h = document.getElementById("host");
+
+		//----------display content when click load------------
+		n.value = localStorage.getItem("name");
+		e.value = localStorage.getItem("event");
+		a.value = localStorage.getItem("address");
+		cty.value = localStorage.getItem("city");
+		ctry.value = localStorage.getItem("country");
+		d.value = localStorage.getItem("date");
+		t.value = localStorage.getItem("time");
+
+		//-------display content on div when click load----------
+		n1.innerHTML = localStorage.getItem("name");
+		e1.innerHTML = localStorage.getItem("event");
+		a1.innerHTML = localStorage.getItem("address");
+		cty1.innerHTML = localStorage.getItem("city");
+		ctry1.innerHTML = localStorage.getItem("country");
+		d1.innerHTML = localStorage.getItem("date");
+		t1.innerHTML = localStorage.getItem("time");
+		h.value = localStorage.getItem("host");
+		h1.innerHTML = localStorage.getItem("host");
+	}
+
+	function clearContent(){
+		window.location.reload();
+	}
+
+
+
+</script>
+</html>
