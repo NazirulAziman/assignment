@@ -67,10 +67,12 @@
 		border-radius: 10px;
 	}
 
+	
+
 	/*--------------------for main here----------------------*/
 	.main{
 		height: 110vh;
-		flex: 85%;
+		flex: 65%;
 	}
 
 	.edit_box{
@@ -134,6 +136,25 @@
 	.send_box input{
 		display: block;
 		margin-top: 10px; margin-left: auto; margin-right: auto;
+	}
+
+
+	/*-------------------------other side--------------------------*/
+	.side2{
+		background-image: url("images/nav.jpg");
+		flex: 15%;
+	}
+
+	.side2 h3{
+		text-align: center;
+	}
+
+	.greetingsList{
+		width: 200px; height: 110px;
+		border: 1px solid black;
+		display: block;
+		margin-top: 10px; margin-left: auto; margin-right: auto;
+		text-align: center;
 	}
 
 	/*------------------for popup--------------------------*/
@@ -217,8 +238,8 @@
 		}
 
 		.edit_box h2{
-			margin-top: 80px;
-			font-size: 0.7em;
+			margin-top: 70px;
+			font-size: 1em;
 		}
 
 		.sticker_box{
@@ -249,24 +270,6 @@
 		<div class="list_box">
 			<img src="images/G2.png" class="sticker" id="drag1" draggable="true" ondragstart="drag(event)">
 			<img src="images/G1.png" class="sticker" id="drag2" draggable="true" ondragstart="drag(event)">
-		</div>
-
-		<!-------------------------------------input button here-------------------------------------->
-
-		<div class="enterKey">
-		<input type="text" placeholder="Enter hosted by names" id="host">
-		<input type="text" placeholder="Enter recipient's name" id="name">
-		<input type="text" placeholder="Enter name of the event" id="event">
-		<textarea placeholder="Enter event description" id="descriptions" rows="5" cos="2"></textarea>
-		<input type="date" placeholder="Enter date" id="date">
-		<input type="time" placeholder="Enter date" id="time">
-		
-
-		<!---------------------------------save and load button here----------------------------------->
-		<br>
-		<button onclick="saveContent()" id="saveBtn">Save as favourite content</button>
-		<button onclick="loadContent()" id="loadBtn">Load favourite content</button>
-		<button onclick="clearContent()" id="clearBtn">Clear favourite content</button>
 		</div>
 
 		<!--------------------------------color picker here----------------------------------->
@@ -306,7 +309,7 @@
 
 	<div class="main">
 		<div class="edit_box" id="box">
-			<h2>السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</h2>
+			<h2 id="greetings_result"></h2>
 			<div class="names" id="n1" style="text-align: center; margin-top: 10px;" placeholder="Enter recipient's name"></div>
 			<div class="sticker_box" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 			<div class="names" id="e1" style="text-align: center; margin-top: 10px;" placeholder="Enter name of the event"></div>
@@ -320,6 +323,41 @@
 		<input type="submit" id="submitBtn" value="Submit to the recipient">
 		</div>
 	</div>
+
+	<!-----------------------------Other side--------------------------------->
+
+	<!-------------------------------------pick greetings---------------------------------------->
+	<div class="side2">
+
+		<h3>Click on greetings list below to insert on preview cards</h3>
+		<div class="greetingsList">
+			<div id="greetOne" style="margin-top:10px;">السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</div>
+			<div id="greetTwo">Salam Sejahtera!</div>
+			<div id="greetThree">Hello!</div>
+			<div id="greetFour">Greetings!</div>
+			<div id="greetFive">Good day!</div>
+		</div>
+
+		<!-------------------------------------input button here-------------------------------------->
+
+		<div class="enterKey">
+		<input type="text" placeholder="Enter hosted by names" id="host">
+		<input type="text" placeholder="Enter recipient's name" id="name">
+		<input type="text" placeholder="Enter name of the event" id="event">
+		<textarea placeholder="Enter event description" id="descriptions" rows="5" cos="2"></textarea>
+		<input type="date" placeholder="Enter date" id="date">
+		<input type="time" placeholder="Enter date" id="time">
+		
+
+		<!---------------------------------save and load button here----------------------------------->
+		<br>
+		<button onclick="saveContent()" id="saveBtn">Save as favourite content</button>
+		<button onclick="loadContent()" id="loadBtn">Load favourite content</button>
+		<button onclick="clearContent()" id="clearBtn">Clear favourite content</button>
+		</div>
+
+	</div>
+
 </div>
 
 
@@ -488,6 +526,13 @@
 		}
 
 
+	//---------------------Greetings-------------------------
+
+	greetOne.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ";})
+	greetTwo.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Salam Sejahtera!";})
+	greetThree.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Hello!";})
+	greetFour.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Greetings!";})
+	greetFive.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Good Day!";})
 
 </script>
 </html>
