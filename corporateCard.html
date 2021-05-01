@@ -37,14 +37,13 @@
 			margin-left: auto; margin-right: auto;
 			display: block;
 		}
-
-		.logo{
-			max-width: 400px;
-			width: 100px; height: 100px;
-			margin-top: 10px; margin-left: auto; margin-right: auto;
+		.picLogo{
+			max-width: 200px;
+			margin-top: 10px; margin-left:auto; margin-right: auto;
 			display: block;
 		}
-		
+
+
 		/*-----------------------------------main here--------------------------------*/
 		.main{
 			height: 100vh;
@@ -53,7 +52,6 @@
 
 		.edit_box{
 			width: 600px; height: 700px;
-			background-image: url("images/c1.png");
 			background-size: 100% 100%;
 			margin-top: 50px; margin-left: auto; margin-right: auto;
 			display: block;
@@ -67,7 +65,7 @@
 		}
 
 		.logo_box{
-			width: 130px; height: 130px;
+			width: 200px; height: 130px;
 			margin-top: 60px; margin-left: auto; margin-right: auto;
 			display: block; z-index: 1;
 		}
@@ -121,7 +119,6 @@
 
 			.logo{
 				max-width: 250px;
-				width: 90px; height: 90px;
 				margin-left: auto; margin-right: auto;
 				display: block;
 			}
@@ -140,6 +137,11 @@
 				width: 200px;
 				font-size: 0.9em;
 			}
+
+			.picLogo{
+				width: 90px; height: 90px;
+			}
+
 
 			/*-----------------for preview div-------------*/
 			#n1{
@@ -168,15 +170,16 @@
 		<!-----------------------------side here--------------------------------->
 		<div class="side">
 			<h2>Choose Logo Here :</h2>
-			<div class="logoList" ondrop="drop(event)" ondragover="allowDrop(event)">
-				<img src="images/Logo1.png" class="logo" id="drag1" class="picLogo" draggable="true" ondragstart="drag(event)" onclick="click()">
-				<img src="images/Logo2.png" class="logo" id="drag2" class="picLogo" draggable="true" ondragstart="drag(event)" onclick="click()">
+			<div class="logoList">
+				<img src="images/pb1.png" id="drag1" class="picLogo" draggable="true" ondragstart="drag(event)">
+				<img src="images/pb2.png" id="drag2" class="picLogo" draggable="true" ondragstart="drag(event)">
 			</div>
 
-			<select id="selection" onchange="tempChange(this.value)" class="selectList">
-				<option value="0">choose template</option>
-				<option value="1">background 1</option>
-				<option value="2">background 2</option>			
+
+			<select onchange="templateChange(this.value)" class="selectList">
+				<option value="0">Choose Background Template</option>
+				<option value="1">Template A</option>
+				<option value="2">Template B</option>
 			</select>
 
 			<div class="enterKey">
@@ -191,6 +194,8 @@
 			</div>
 			<br>
 		</div>
+
+		
 
 
 		<!-- ----------------------------------main here------------------------------>
@@ -219,31 +224,69 @@
 
 <!-- -----------------------------javascript here-------------------------- -->
 	<script type="text/javascript">
+
 		// -------------------------------drag and drop here-----------------------------
 		function allowDrop(ev) {
- 			ev.preventDefault();
+  			ev.preventDefault();
 		}
 
 		function drag(ev) {
- 			ev.dataTransfer.setData("text", ev.target.id);
+  			ev.dataTransfer.setData("text", ev.target.id);
 		}
 
 		function drop(ev) {
- 			ev.preventDefault();
+  			ev.preventDefault();
   			var data = ev.dataTransfer.getData("text");
   			var isLeft = 'drag1' == data || "drag2" == data;
- 			ev.target.appendChild(document.getElementById(data));
+  			var nodeCopy = document.getElementById(data).cloneNode(true);
+  			nodeCopy.id = "img" + ev.target.id;
+  			if (!isLeft) {
+    		sourceNode = document.getElementById(data);
+    		sourceNode.parentNode.removeChild(sourceNode);
+  		}
+  			ev.target.appendChild(nodeCopy);
+  			ev.stopPropagation();
+  			return false;
 		}
 
 		// --------------------------------change template-------------------------------
-		function tempChange(value){
-		var tc = document.getElementById("box")
+
+		function templateChange(value){
+			var background_temp = document.getElementById("box");
 			if (value==1) {
-				tc.style.backgroundImage = "url(images/c1.png)";
+				background_temp.style.backgroundImage = "url(images/v2.png)"
 			}
-			else if(value==2){
-				tc.style.backgroundImage = "url(images/c2.png)";
+			else if(value==2) {
+				background_temp.style.backgroundImage = "url(images/v4.png)"
 			}
+		}
+
+		//-----------------------------localstorage save-------------------------------
+		var n = document.getElementById("name");
+		var h = document.getElementById("host");
+		var e = document.getElementById("event");
+		var a = document.getElementById("address");
+		var d = document.getElementById("date");
+
+		var display_n = document.getElementById("n1");
+		var display_h = document.getElementById("h1");
+		var display_e = document.getElementById("e1");
+		var display_a = document.getElementById("a1");
+		var display_d = document.getElementById("d1");
+
+		n.addEventListener('input', letter =>{display_n.textContent = letter.target.value;})
+		h.addEventListener('input', letter =>{display_h.textContent = letter.target.value;})
+		e.addEventListener('input', letter =>{display_e.textContent = letter.target.value;})
+		a.addEventListener('input', letter =>{display_a.textContent = letter.target.value;})
+		d.addEventListener('input', letter =>{display_d.textContent = letter.target.value;})
+
+
+		function saveContent(){
+		localStorage.setItem("name",display_n.textContent)
+		localStorage.setItem("host",display_h.textContent)
+		localStorage.setItem("event",display_e.textContent)
+		localStorage.setItem("address",display_a.textContent)
+
 		}
 
 	</script>
