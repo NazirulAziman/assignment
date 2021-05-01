@@ -100,11 +100,6 @@
 		<div class="side">
 
 			<div class="enterKey">
-				<select id="selection" onchange="tempChange(this.value)">
-					<option value="0">choose template</option>
-					<option value="1">background 1</option>
-					<option value="2">background 2</option>			
-				</select>
 				<input type="text" placeholder="Enter recipient's name" id="name">
 				<input type="text" placeholder="Enter name of the event" id="event">
 				<input type="text" placeholder="Enter address with postal code" id="address">
@@ -117,6 +112,12 @@
 				<button onclick="saveContent()">Save as favourite content</button>
 				<button onclick="loadContent()">Load favourite content</button>
 			</div>
+
+			<select id="selection" onchange="tempChange(this.value)">
+					<option value="0">choose template</option>
+					<option value="1">background 1</option>
+					<option value="2">background 2</option>			
+			</select>
 			
 		</div>
 
@@ -163,7 +164,6 @@
 		}
 	}
 	// ------------------------local storage----------------------------
-	function saveContent() {
 		var n = document.getElementById("name");
 		var e = document.getElementById("event");
 		var p = document.getElementById("place");
@@ -171,23 +171,19 @@
 		var t = document.getElementById("time");
 		var ctry = document.getElementById("country");
 
+
+
+	function saveContent() {
+
 		localStorage.setItem("name", n.value);
 		localStorage.setItem("event", e.value);
 		localStorage.setItem("place", p.value);
 		localStorage.setItem("date", d.value);
 		localStorage.setItem("time", t.value);
 		localStorage.setItem("country", ctry.value);
-		alert("Content Saved!");
-		window.location.reload();
 	}
 
 	function loadContent() {
-		var n = document.getElementById("name");
-		var e = document.getElementById("event");
-		var p = document.getElementById("place");
-		var d = document.getElementById("date");
-		var t = document.getElementById("time");
-		var ctry = document.getElementById("country");
 
 		localStorage.setItem("name", n.value);
 		localStorage.setItem("event", e.value);
@@ -195,22 +191,6 @@
 		localStorage.setItem("date", d.value);
 		localStorage.setItem("time", t.value);
 		localStorage.setItem("country", ctry.value);
-	}
-
-	function fillContent() {
-		var n = document.getElementById("name");
-		var e = document.getElementById("event");
-		var p = document.getElementById("place");
-		var d = document.getElementById("date");
-		var t = document.getElementById("time");
-		var ctry = document.getElementById("country");
-
-		nl.innerHTML = localStorage.getItem("name", n.value);
-		el.innerHTML = localStorage.getItem("event", e.value);
-		pl.innerHTML = localStorage.getItem("place", p.value);
-		dl.innerHTML = localStorage.getItem("date", d.value);
-		t1.innerHTML = localStorage.getItem("time", t.value);
-		ctryl.innerHTML = localStorage.getItem("country", ctry.value);
 	}
 	</script>
 
