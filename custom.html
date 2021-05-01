@@ -38,7 +38,7 @@
 		margin-top: 20px; margin-left: auto; margin-right: auto;
 	}
 
-	.enterKey input, button{
+	.enterKey input, textarea, button{
 		margin-top: 10px; margin-left: auto; margin-right: auto;
 		display: block;
 	}
@@ -118,6 +118,23 @@
 		display: block;
 	}
 
+	#submitBtn:hover{
+		color: black;
+		background-color: yellow;
+		border-radius: 10px;
+	}
+
+	.send_box{
+		width: 300px; height: 80px;
+		display: block;
+		margin-top: 20px; margin-left: auto; margin-right: auto;
+		border:1px dashed black;
+	}
+
+	.send_box input{
+		display: block;
+		margin-top: 10px; margin-left: auto; margin-right: auto;
+	}
 
 	/*------------------for popup--------------------------*/
 	.modal {
@@ -129,6 +146,7 @@
   		background-color: rgba(0,0,0,0.4); 
   		padding-top: 100px;
   		text-align: center; font-size: 1.3em; 
+ 
 	}
 
 	.modal-content {
@@ -137,6 +155,10 @@
   		padding: 20px;
   		border: 1px solid #888;
   		width: 80%;
+  		-webkit-animation-name: slideIn;
+  		-webkit-animation-duration: 0.4s;
+  		animation-name: slideIn;
+  		animation-duration: 0.4s
 	}
 
 	.close {
@@ -153,7 +175,7 @@
   		cursor: pointer;
 	}
 
-	
+	/*----------------------animation for popup---------------------*/
 
 	/*--------------------for @media here----------------------*/
 
@@ -235,9 +257,7 @@
 		<input type="text" placeholder="Enter hosted by names" id="host">
 		<input type="text" placeholder="Enter recipient's name" id="name">
 		<input type="text" placeholder="Enter name of the event" id="event">
-		<input type="text" placeholder="Enter address with postal code" id="address">
-		<input type="text" placeholder="Enter city" id="city">
-		<input type="text" placeholder="Enter country" id="country">
+		<textarea placeholder="Enter event description" id="descriptions" rows="5" cos="2"></textarea>
 		<input type="date" placeholder="Enter date" id="date">
 		<input type="time" placeholder="Enter date" id="time">
 		
@@ -278,7 +298,6 @@
 			<option value="2">Impact</option>
 			<option value="3">Serif</option>
 		</select>
-		<button id="submitBtn">Submit to recipient</button>
 		<br>
 
 	</div>	
@@ -291,12 +310,14 @@
 			<div class="names" id="n1" style="text-align: center; margin-top: 10px;" placeholder="Enter recipient's name"></div>
 			<div class="sticker_box" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 			<div class="names" id="e1" style="text-align: center; margin-top: 10px;" placeholder="Enter name of the event"></div>
-			<div class="names" id="a1" style="text-align: center; margin-top: 20px;" placeholder="Enter address & postal code"></div>
-			<div class="names" id="cty1" style="text-align: center; margin-top: 10px;" placeholder="Enter city"></div>
-			<div class="names" id="ctry1" style="text-align: center; margin-top: 10px;" placeholder="Enter country"></div>
-			<div class="names" id="d1" style="text-align: center; margin-top: 30px;" placeholder="Enter date"></div>
-			<div class="names" id="t1" style="text-align: center; margin-top: 10px;" placeholder="Enter time"></div>
+			<div class="names" id="ed1" style="text-align: center; margin-top: 40px;" placeholder="Enter event description"></div>
+			<div class="names" id="d1" style="text-align: center; margin-top: 70px;" placeholder="Enter date"></div>
+			<div class="names" id="t1" style="text-align: center; margin-top: 20px;" placeholder="Enter time"></div>
 			<div class="names" id="h1" style="text-align: center; margin-top: 30px;" placeholder="Enter hosted by names"></div>
+		</div>
+		<div class="send_box">
+		<input type="email" placeholder="Enter recipient gmail address" size="30" pattern=".+@gmail.com"required>
+		<input type="submit" id="submitBtn" value="Submit to the recipient">
 		</div>
 	</div>
 </div>
@@ -397,9 +418,7 @@
 
 		var display_n = document.getElementById("n1");
 		var display_e = document.getElementById("e1");
-		var display_a = document.getElementById("a1");
-		var display_cty = document.getElementById("cty1");
-		var display_ctry = document.getElementById("ctry1");
+		
 		var display_d = document.getElementById("d1");
 		var display_t = document.getElementById("t1");
 		var display_h = document.getElementById("h1");
@@ -409,9 +428,7 @@
 		//---------------this will display to preview card when typing on the input----------------
 		n.addEventListener('input', letter =>{display_n.textContent = letter.target.value;})
 		e.addEventListener('input', letter =>{display_e.textContent = letter.target.value;})
-		a.addEventListener('input', letter =>{display_a.textContent = letter.target.value;})
-		cty.addEventListener('input', letter =>{display_cty.textContent = letter.target.value;})
-		ctry.addEventListener('input', letter =>{display_ctry.textContent = letter.target.value;})
+		
 		d.addEventListener('input', letter =>{display_d.textContent = letter.target.value;})
 		t.addEventListener('input', letter =>{display_t.textContent = letter.target.value;})
 		h.addEventListener('input', letter =>{display_h.textContent = letter.target.value;})
@@ -419,9 +436,7 @@
 	function saveContent(){
 		localStorage.setItem("name",display_n.textContent)
 		localStorage.setItem("event",display_e.textContent)
-		localStorage.setItem("address",display_a.textContent)
-		localStorage.setItem("city",display_cty.textContent)
-		localStorage.setItem("country",display_ctry.textContent)
+		
 		localStorage.setItem("date",display_d.textContent)
 		localStorage.setItem("time",display_t.textContent)
 		localStorage.setItem("host",display_h.textContent)
@@ -433,18 +448,14 @@
 		//----------display content when click load------------
 		n.value = localStorage.getItem("name");
 		e.value = localStorage.getItem("event");
-		a.value = localStorage.getItem("address");
-		cty.value = localStorage.getItem("city");
-		ctry.value = localStorage.getItem("country");
+		
 		d.value = localStorage.getItem("date");
 		t.value = localStorage.getItem("time");
 
 		//-------display content on div when click load----------
 		n1.innerHTML = localStorage.getItem("name");
 		e1.innerHTML = localStorage.getItem("event");
-		a1.innerHTML = localStorage.getItem("address");
-		cty1.innerHTML = localStorage.getItem("city");
-		ctry1.innerHTML = localStorage.getItem("country");
+		
 		d1.innerHTML = localStorage.getItem("date");
 		t1.innerHTML = localStorage.getItem("time");
 		h.value = localStorage.getItem("host");
@@ -467,7 +478,7 @@
 		}
 
 		span.onclick = function() {
- 		 modal.style.display = "none";
+ 		modal.style.display = "none";
 		}
 
 		window.onclick = function(event) {
