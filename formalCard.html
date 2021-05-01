@@ -12,14 +12,14 @@
 		/*--------------------=------------side here-------------------------------*/
 		.side{
 			background-image: url("images/nav.jpg");
-			flex: 30%;
+			flex: 20%;
 		}
 
 		.enterKey{
-			width: 250px; height: 270px;
+			width: 250px; height: 300px;
 			border: 2px dashed;
 			display: block;
-			margin-top: 150px; margin-left: auto; margin-right: auto;
+			margin-top: 70px; margin-left: auto; margin-right: auto;
 		}
 
 		.enterKey input, button, select{
@@ -27,10 +27,39 @@
 			display: block;
 		}
 
+		.greetingsList{
+			width: 300px; height: 170px;
+			display: block;
+			margin-top: 10px; margin-left: auto; margin-right: auto;
+			text-align: center;
+		}
+
+		.greetingsList h3{
+			font-size: 1.5em;
+		}
+
+		#saveBtn:hover{
+			color: darkgreen;
+			background-color: lightgreen;
+			border-radius: 10px;
+		}
+
+		#loadBtn:hover{
+			color: darkblue;
+			background-color: cyan;
+			border-radius: 10px;
+		}
+
+		#clearBtn:hover{
+			color: yellow;
+			background-color: red;
+			border-radius: 10px;
+		}
+
 
 		/*-----------------------------------main here--------------------------------*/
 		.main{
-			height: 100vh;
+			height: 90vh;
 			flex: 80%;
 		}
 
@@ -95,6 +124,15 @@
 		<!-----------------------------side here--------------------------------->
 		<div class="side">
 
+			<div class="greetingsList">
+				<h3>Click on greetings list below to insert on preview cards</h3>
+				<div id="greetOne" class="gList"style="margin-top:10px;">السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</div>
+				<div id="greetTwo" class="gList"style="margin-top:10px;">Salam Sejahtera!</div>
+				<div id="greetThree" class="gList"style="margin-top:10px;">Hello!</div>
+				<div id="greetFour" class="gList"style="margin-top:10px;">Greetings!</div>
+				<div id="greetFive" class="gList"style="margin-top:10px;">Good day!</div>
+			</div>
+
 			<div class="enterKey">
 				<input type="text" placeholder="Enter recipient's name" id="name">
 				<input type="text" placeholder="Enter name of the event" id="event">
@@ -103,8 +141,9 @@
 				<input type="time" placeholder="Enter date" id="time">
 				<input type="text" placeholder="Enter hosted by names" id="host">
 
-				<button onclick="saveContent()">Save as favourite content</button>
-				<button onclick="loadContent()">Load favourite content</button>
+				<button onclick="saveContent()" id="saveBtn">Save as favourite content</button>
+				<button onclick="loadContent()" id="loadBtn">Load favourite content</button>
+				<button onclick="clearContent()" id="clearBtn">Clear favourite content</button>
 			</div>
 
 			<select id="selection" onchange="tempChange(this.value)">
@@ -112,7 +151,7 @@
 					<option value="1">background 1</option>
 					<option value="2">background 2</option>			
 			</select>
-			
+
 		</div>
 
 
@@ -120,9 +159,10 @@
 		<div class="main">
 			<!------------------------------preview card here------------------------------->
 			<div class="edit_box1" id="box">
-				<div class="names" id="n1" style="text-align: center; margin-top: 100px;" placeholder="Enter recipient's name"></div>
-				<h1 class="names" id="e1" style="text-align: center; margin-top: 30px;" placeholder="Enter event name"></h1>
-				<div class="names" id="h1" style="text-align: center; margin-top: 10px;" placeholder="host names"></div>
+				<h2 id="greetings_result" style="text-align: center; margin-top: 100px;"></h2>
+				<div class="names" id="n1" style="text-align: center; margin-top: 50px;" placeholder="Enter recipient's name"></div>
+				<h1 class="names" id="e1" style="text-align: center; margin-top: 50px;" placeholder="Enter event name"></h1>
+				<div class="names" id="h1" style="text-align: center; margin-top: 100px;" placeholder="Enter host names"></div>
 				<div class="names" id="d1" style="text-align: center; margin-top: 10px;" placeholder="Enter date"></div>
 				<div class="names" id="t1" style="text-align: center; margin-top: 10px;" placeholder="Enter time"></div>
 				<div class="names" id="p1" style="text-align: center; margin-top: 10px;" placeholder="place"></div>
@@ -160,6 +200,7 @@
 		var d = document.getElementById("date");
 		var t = document.getElementById("time");
 		var h = document.getElementById("host");
+		var g = document.querySelector('.gList');
 
 		var display_n = document.getElementById("n1");
 		var display_e = document.getElementById("e1");
@@ -175,27 +216,47 @@
 		t.addEventListener('input', letter =>{display_t.textContent = letter.target.value;})
 		h.addEventListener('input', letter =>{display_h.textContent = letter.target.value;})
 
+		
 
 
+	//-----------------------------------save function--------------------------------------
 	function saveContent() {
-
 		localStorage.setItem("name", n.value);
 		localStorage.setItem("event", e.value);
 		localStorage.setItem("place", p.value);
 		localStorage.setItem("date", d.value);
 		localStorage.setItem("time", t.value);
-		localStorage.setItem("country", ctry.value);
+		localStorage.setItem("place", p.value);
+		localStorage.setItem("host", h.value);
+
 	}
 
+	//-----------------------------------load function--------------------------------------
 	function loadContent() {
+		n.value = localStorage.getItem("name");
+		e.value = localStorage.getItem("event");
+		p.value = localStorage.getItem("place");
+		d.value = localStorage.getItem("date");
+		t.value = localStorage.getItem("time");
+		h.value = localStorage.getItem("host");
 
-		localStorage.setItem("name", n.value);
-		localStorage.setItem("event", e.value);
-		localStorage.setItem("place", p.value);
-		localStorage.setItem("date", d.value);
-		localStorage.setItem("time", t.value);
-		localStorage.setItem("country", ctry.value);
+
+		// --------------------automatically load to cards--------------------------
+		n1.innerHTML = localStorage.getItem("name");
+		e1.innerHTML = localStorage.getItem("event");
+		p1.innerHTML = localStorage.getItem("place");
+		d1.innerHTML = localStorage.getItem("date");
+		t1.innerHTML = localStorage.getItem("time");
+		h1.innerHTML = localStorage.getItem("host");
 	}
+
+	// ---------------------------------greetings list here------------------------------------
+		greetOne.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ";})
+		greetTwo.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Salam Sejahtera!";})
+		greetThree.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Hello!";})
+		greetFour.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Greetings!";})
+		greetFive.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Good Day!";})
+
 	</script>
 
 	</html>

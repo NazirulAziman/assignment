@@ -78,6 +78,11 @@
 		display: block;
 	}
 
+	.edit_box h2[placeholder]:empty:before{
+		content: attr(placeholder);
+		color: #555;
+	}
+
 
 	.sticker_box{
 		width: 410px; height: 100px;
@@ -302,7 +307,7 @@
 <header>
 	<img src="images/lg.png">
 	<a href="index.html">Home</a>
-	<a href="#">Customization</a>
+	<a href="custom.html">Customization</a>
 	<a href="#">Favourite</a>
 </header>
 <div class="wrap">
@@ -354,7 +359,7 @@
 
 	<div class="main">
 		<div class="edit_box" id="box">
-			<h2 id="greetings_result"></h2>
+			<h2 id="greetings_result" placeholder="Choose greetings on the list"></h2>
 			<div class="names" id="n1" style="text-align: center; margin-top: 5px;" placeholder="Enter recipient's name"></div>
 			<div class="sticker_box" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 			<div class="names" id="e1" style="text-align: center; margin-top: 10px;" placeholder="Enter name of the event"></div>
@@ -490,6 +495,7 @@
 	
 	//----------------------localstorage here-----------------------
 
+		var g = document.getElementById("greetings_result")
 		var n = document.getElementById("name");
 		var e = document.getElementById("event");
 		var ed = document.getElementById("descriptions");
@@ -499,11 +505,11 @@
 
 		var display_n = document.getElementById("n1");
 		var display_e = document.getElementById("e1");
-		var display_ed = document.getElementById("ed1")
+		var display_ed = document.getElementById("ed1");
 		var display_d = document.getElementById("d1");
 		var display_t = document.getElementById("t1");
 		var display_h = document.getElementById("h1");
-		
+		var display_g = document.getElementById("greetings_result");
 
 
 		//---------------this will display to preview card when typing on the input----------------
@@ -513,6 +519,17 @@
 		d.addEventListener('input', letter =>{display_d.textContent = letter.target.value;})
 		t.addEventListener('input', letter =>{display_t.textContent = letter.target.value;})
 		h.addEventListener('input', letter =>{display_h.textContent = letter.target.value;})
+
+		
+		//---------------------Greetings-------------------------
+		greetOne.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ";})
+		greetTwo.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Salam Sejahtera!";})
+		greetThree.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Hello!";})
+		greetFour.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Greetings!";})
+		greetFive.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Good Day!";})
+
+
+
 
 	function saveContent(){
 		localStorage.setItem("name",display_n.textContent)
@@ -532,6 +549,7 @@
 		ed.value = localStorage.getItem("descriptions");
 		d.value = localStorage.getItem("date");
 		t.value = localStorage.getItem("time");
+		h.value = localStorage.getItem("host");
 
 		//-------display content on div when click load----------
 		n1.innerHTML = localStorage.getItem("name");
@@ -539,7 +557,6 @@
 		ed1.innerHTML = localStorage.getItem("descriptions");
 		d1.innerHTML = localStorage.getItem("date");
 		t1.innerHTML = localStorage.getItem("time");
-		h.value = localStorage.getItem("host");
 		h1.innerHTML = localStorage.getItem("host");
 	}
 
@@ -567,15 +584,6 @@
     		modal.style.display = "none";
   			}
 		}
-
-
-	//---------------------Greetings-------------------------
-
-	greetOne.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ";})
-	greetTwo.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Salam Sejahtera!";})
-	greetThree.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Hello!";})
-	greetFour.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Greetings!";})
-	greetFive.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Good Day!";})
 
 </script>
 </html>
