@@ -149,7 +149,7 @@
 		width: 250px; height: 380px;
 		border: 2px dashed;
 		display: block;
-		margin-top: 40px; margin-left: auto; margin-right: auto;
+		margin-top: 50px; margin-left: auto; margin-right: auto;
 	}
 
 	.enterKey input, textarea, button{
@@ -158,7 +158,7 @@
 	}
 
 	.greetingsList{
-		width: 200px; height: 110px;
+		width: 250px; height: 170px;
 		display: block;
 		margin-top: 10px; margin-left: auto; margin-right: auto;
 		text-align: center;
@@ -210,22 +210,32 @@
 	@media screen and (max-width: 600px){
 
 		/*---------------------side here-----------------------*/
+		.side{
+			order: 1;
+		}
 
 		.sticker{
 			max-width: 250px;
 		}
 
 		.enterKey{
-			width: 520px; height: 175px;
+			width: 200px; height: 350px;
+			margin-top: 20px;
+			
 		}
 
-		.enterKey input,button{
+		.enterKey input,button,textarea{
 			margin-left: 10px;
 			display: inline-block;
+			font-size: 0.8em;
 		}
 
-		#bgColor, #fontColor, .colorLabel ,#btn{
-			margin-left: 10px;
+		.enterkey textarea{
+			height: 10px;
+		}
+
+		#bgColor, #fontColor, .colorLabel{
+			margin-left: auto; margin-right: auto;
 			display: inline-block;
 		}
 
@@ -236,6 +246,7 @@
 		/*-------------------main here------------------------*/
 		.main{
 			margin-bottom: 60px;
+			order: 3;
 		}
 
 		.edit_box{
@@ -256,6 +267,33 @@
 		.names{
 			width: 200px;
 			font-size: 0.9em;
+		}
+
+		#ed1{
+			width: 300px;
+		}
+
+		/*------------------other side here------------------*/
+		.side2{
+			order: 2;
+		}
+
+		.side2 h3{
+			font-size: 1.3em;
+		}
+
+		.side2{
+			display: grid;
+			grid-template-areas: 
+			"gList eKey";
+		}
+
+		.greetingsList{
+			width: 200px; height: 80px;
+		}
+
+		.greetingsList div{
+			font-size: 1.2em;
 		}
 	}
 
@@ -302,7 +340,7 @@
 		</select>
 
 		<!-------------------------------------font family here-------------------------------------->
-		<select onchange="fontChange(this.value)" id="btn1">
+		<select onchange="fontChange(this.value)" id="btn">
 			<option value="0">Change font family</option>
 			<option value="1">Arial</option>
 			<option value="2">Impact</option>
@@ -335,9 +373,8 @@
 
 	<!-------------------------------------pick greetings---------------------------------------->
 	<div class="side2">
-
-		<h3>Click on greetings list below to insert on preview cards</h3>
-		<div class="greetingsList">
+			<div class="greetingsList" style="grid-area:gList;">
+			<h3>Click on greetings list below to insert on preview cards</h3>
 			<div id="greetOne" style="margin-top:10px;">السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</div>
 			<div id="greetTwo" style="margin-top:10px;">Salam Sejahtera!</div>
 			<div id="greetThree" style="margin-top:10px;">Hello!</div>
@@ -347,7 +384,7 @@
 
 		<!-------------------------------------input button here-------------------------------------->
 
-		<div class="enterKey">
+		<div class="enterKey" style="grid-area:eKey;">
 		<input type="text" placeholder="Enter hosted by names" id="host">
 		<input type="text" placeholder="Enter recipient's name" id="name">
 		<input type="text" placeholder="Enter name of the event" id="event">
@@ -362,6 +399,7 @@
 		<button onclick="loadContent()" id="loadBtn">Load favourite content</button>
 		<button onclick="clearContent()" id="clearBtn">Clear favourite content</button>
 		</div>
+		<br>
 
 	</div>
 
