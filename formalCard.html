@@ -86,7 +86,7 @@
 			font-size: 1.2em;
 		}
 
-		.names[placeholder]:empty:before{
+		.names[placeholder]:empty:before, .edit_box1 h2[placeholder]:empty:before{
 			content: attr(placeholder);
 			color: #555;
 		}
@@ -159,7 +159,7 @@
 		<div class="main">
 			<!------------------------------preview card here------------------------------->
 			<div class="edit_box1" id="box">
-				<h2 id="greetings_result" style="text-align: center; margin-top: 100px;"></h2>
+				<h2 id="greetings_result" style="text-align: center; margin-top: 100px;" placeholder="Choose greetings on the list"></h2>
 				<div class="names" id="n1" style="text-align: center; margin-top: 50px;" placeholder="Enter recipient's name"></div>
 				<h1 class="names" id="e1" style="text-align: center; margin-top: 50px;" placeholder="Enter event name"></h1>
 				<div class="names" id="h1" style="text-align: center; margin-top: 100px;" placeholder="Enter host names"></div>
