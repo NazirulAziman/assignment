@@ -31,18 +31,6 @@
 		display: block;
 	}
 
-	.enterKey{
-		width: 250px; height: 380px;
-		border: 2px dashed;
-		display: block;
-		margin-top: 20px; margin-left: auto; margin-right: auto;
-	}
-
-	.enterKey input, textarea, button{
-		margin-top: 10px; margin-left: auto; margin-right: auto;
-		display: block;
-	}
-
 	#bgColor,  #fontColor, .colorLabel{
 		margin-top: 10px; margin-left: auto; margin-right: auto;
 		display: block;
@@ -105,8 +93,16 @@
 	.names{
 		margin-left: auto; margin-right: auto;
 		display: block;
-		width: 340px; border: none;
+		width: 340px;
 		font-size: 1.2em;
+	}
+
+	#ed1{
+		width: 400px; height: 100px;
+	}
+
+	.names:hover{
+		border:1px dashed;
 	}
 
 	.names[placeholder]:empty:before{
@@ -149,9 +145,20 @@
 		text-align: center;
 	}
 
+	.enterKey{
+		width: 250px; height: 380px;
+		border: 2px dashed;
+		display: block;
+		margin-top: 40px; margin-left: auto; margin-right: auto;
+	}
+
+	.enterKey input, textarea, button{
+		margin-top: 10px; margin-left: auto; margin-right: auto;
+		display: block;
+	}
+
 	.greetingsList{
 		width: 200px; height: 110px;
-		border: 1px solid black;
 		display: block;
 		margin-top: 10px; margin-left: auto; margin-right: auto;
 		text-align: center;
@@ -314,7 +321,7 @@
 			<div class="sticker_box" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 			<div class="names" id="e1" style="text-align: center; margin-top: 10px;" placeholder="Enter name of the event"></div>
 			<div class="names" id="ed1" style="text-align: center; margin-top: 40px;" placeholder="Enter event description"></div>
-			<div class="names" id="d1" style="text-align: center; margin-top: 70px;" placeholder="Enter date"></div>
+			<div class="names" id="d1" style="text-align: center; margin-top: 50px;" placeholder="Enter date"></div>
 			<div class="names" id="t1" style="text-align: center; margin-top: 20px;" placeholder="Enter time"></div>
 			<div class="names" id="h1" style="text-align: center; margin-top: 30px;" placeholder="Enter hosted by names"></div>
 		</div>
@@ -332,10 +339,10 @@
 		<h3>Click on greetings list below to insert on preview cards</h3>
 		<div class="greetingsList">
 			<div id="greetOne" style="margin-top:10px;">السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</div>
-			<div id="greetTwo">Salam Sejahtera!</div>
-			<div id="greetThree">Hello!</div>
-			<div id="greetFour">Greetings!</div>
-			<div id="greetFive">Good day!</div>
+			<div id="greetTwo" style="margin-top:10px;">Salam Sejahtera!</div>
+			<div id="greetThree" style="margin-top:10px;">Hello!</div>
+			<div id="greetFour" style="margin-top:10px;">Greetings!</div>
+			<div id="greetFive" style="margin-top:10px;">Good day!</div>
 		</div>
 
 		<!-------------------------------------input button here-------------------------------------->
@@ -447,16 +454,14 @@
 
 		var n = document.getElementById("name");
 		var e = document.getElementById("event");
-		var a = document.getElementById("address");
-		var cty = document.getElementById("city");
-		var ctry = document.getElementById("country");
+		var ed = document.getElementById("descriptions");
 		var d = document.getElementById("date");
 		var t = document.getElementById("time");
 		var h = document.getElementById("host");
 
 		var display_n = document.getElementById("n1");
 		var display_e = document.getElementById("e1");
-		
+		var display_ed = document.getElementById("ed1")
 		var display_d = document.getElementById("d1");
 		var display_t = document.getElementById("t1");
 		var display_h = document.getElementById("h1");
@@ -466,7 +471,7 @@
 		//---------------this will display to preview card when typing on the input----------------
 		n.addEventListener('input', letter =>{display_n.textContent = letter.target.value;})
 		e.addEventListener('input', letter =>{display_e.textContent = letter.target.value;})
-		
+		ed.addEventListener('input', letter =>{display_ed.textContent = letter.target.value;})
 		d.addEventListener('input', letter =>{display_d.textContent = letter.target.value;})
 		t.addEventListener('input', letter =>{display_t.textContent = letter.target.value;})
 		h.addEventListener('input', letter =>{display_h.textContent = letter.target.value;})
@@ -474,7 +479,7 @@
 	function saveContent(){
 		localStorage.setItem("name",display_n.textContent)
 		localStorage.setItem("event",display_e.textContent)
-		
+		localStorage.setItem("descriptions",display_ed.textContent)
 		localStorage.setItem("date",display_d.textContent)
 		localStorage.setItem("time",display_t.textContent)
 		localStorage.setItem("host",display_h.textContent)
@@ -486,14 +491,14 @@
 		//----------display content when click load------------
 		n.value = localStorage.getItem("name");
 		e.value = localStorage.getItem("event");
-		
+		ed.value = localStorage.getItem("descriptions");
 		d.value = localStorage.getItem("date");
 		t.value = localStorage.getItem("time");
 
 		//-------display content on div when click load----------
 		n1.innerHTML = localStorage.getItem("name");
 		e1.innerHTML = localStorage.getItem("event");
-		
+		ed1.innerHTML = localStorage.getItem("descriptions");
 		d1.innerHTML = localStorage.getItem("date");
 		t1.innerHTML = localStorage.getItem("time");
 		h.value = localStorage.getItem("host");
