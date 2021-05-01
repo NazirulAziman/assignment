@@ -3,6 +3,8 @@
 	<head>
 		<title>FormalPage</title>
 	</head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="style.css">
 
 	<!-- ------------------------css internal style here-------------------------- -->
@@ -91,6 +93,10 @@
 			color: #555;
 		}
 
+		#greetings_result{
+			margin-top: 100px;
+		}
+
 
 		/*-----------------------------for media here--------------------------------*/
 		@media screen and (max-width:600px){
@@ -101,18 +107,22 @@
 			.edit_box1{
 				background-size: 100% 100%;
 				width: 400px; height: 500px;
-				margin-bottom: 30px;
+				margin-bottom: 70px;
 				font-size: 0.8em;
 			}
 
 			.edit_box1 h1, h2{
-				font-size: 0.7em;
+				font-size: 1.2em;
 			}
 
+			#greetings_result{
+				margin-top: 80px;
+			}
 
 		/*----------------------------side--------------------------------*/
-		.enterKey { margin-top:100px; margin-right: auto; margin-left: auto; margin-bottom: 50px}
-		}
+			.enterKey { 
+			margin-top: 80px; margin-right: auto; margin-left: auto; margin-bottom: 50px;
+			}
 	</style>
 	<body>
 	<!-- -------------------------header here--------------------------- -->
@@ -157,6 +167,7 @@
 					<option value="1">background 1</option>
 					<option value="2">background 2</option>			
 			</select>
+			<br>
 
 		</div>
 
@@ -165,7 +176,7 @@
 		<div class="main">
 			<!------------------------------preview card here------------------------------->
 			<div class="edit_box1" id="box">
-				<h2 id="greetings_result" style="text-align: center; margin-top: 100px;" placeholder="Choose greetings on the list"></h2>
+				<h2 id="greetings_result" style="text-align: center;" placeholder="Choose greetings on the list"></h2>
 				<div class="names" id="n1" style="text-align: center; margin-top: 50px;" placeholder="Enter recipient's name"></div>
 				<h1 class="names" id="e1" style="text-align: center; margin-top: 50px;" placeholder="Enter event name"></h1>
 				<div class="names" id="h1" style="text-align: center; margin-top: 100px;" placeholder="Enter host names"></div>
