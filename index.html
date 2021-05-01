@@ -51,14 +51,14 @@
 	}
 
 	.box_one, .box_two, .box_three{
-		width: 500px; height: 440px;
+		width: 500px; height: 500px;
 		border: 2px solid yellow; border-radius: 10px;
 		margin-top: 200px; margin-left: 60px;
 		text-align: center;
 	}
 
 	.pic_one, .pic_two{
-		max-width: 200px;
+		width: 210px; height: 350px;
 		margin-top: 40px;
 		padding: 10px;
 		transition: transform 0.3s ease-out;
@@ -87,18 +87,19 @@
 	/*------main content for bottom here ( body )------*/
 
 	.bottom{
-		height: 90vh;
-		background-image: url("images/bg.jpg");
-		background-repeat: no-repeat;
+		height: 80vh;
+		/*background-image: url("images/bg.jpg");
+		background-repeat: no-repeat;*/
+		display: grid;
+		grid-template-areas: 
+		"t_one t_two t_three t_four";
 	}
 
 	.tuto{
 		width: 400px; height: 500px;
 		border: 2px dashed black; border-radius: 10px;
-		display: inline-block;
-		position: relative;
-		top: 170px; left: 45px;
-		margin-left: 40px;
+		display: block;
+		margin-top: 100px; margin-left: auto; margin-right: auto;
 	}
 
 	/*-------@media screen for mobile platform here-----*/
@@ -123,13 +124,13 @@
 		}
 
 		.box_one, .box_two, .box_three{
-			width: 300px; height: 250px;
+			width: 300px; height: 260px;
 			margin-top: 60px; margin-left: auto; margin-right: auto;
 			display: block;
 		}
 
 		.pic_one, .pic_two{
-			max-width: 100px;
+			width: 100px; height: 150px;
 		}
 
 		.cards{
@@ -137,13 +138,14 @@
 		}
 
 		.bottom{
-			height: 185vh;
-
+			height: 180vh;
+			grid-template-areas: 
+			"t_one t_two"
+			"t_three t_four";
 		}
 
 		.tuto{
-			width: 240px; height: 300px;
-			top: 30px; left: 20px;
+			width: 240px; height: 400px;
 			margin-top: 30px; margin-left: auto; margin-right: auto;
 			display: block;
 		}
@@ -155,7 +157,8 @@
 	<img src="images/lg.png">
 	<a href="index.html">Home</a>
 	<a href="custom.html">Customization</a>
-	<a href="#">Favourite</a>
+	<a href="#">Gallery</a>
+	<a href="#">About us</a>
 </header>
 <div class="wrap">
 	<!-------------------------------top box here---------------------------->
@@ -169,8 +172,8 @@
 
 			<!-----------------box left here---------------->
 			<div class="box_one" style="grid-area:one">
-				<img src="images/v1.png" class="pic_one">
-				<img src="images/v2.png" class="pic_two">
+				<img src="images/v5.png" class="pic_one">
+				<img src="images/v6.jpg" class="pic_two">
 				<a href="formalCard.html" class="cards">Formal Cards</a>
 			</div>
 
@@ -191,19 +194,19 @@
 	<!----------------------------bottom box here----------------------------->
 		<div class="bottom" id="scroll">
 
-			<div class="tuto">
+			<div class="tuto" style="grid-area:t_one">
 				
 			</div>
 
-			<div class="tuto">
+			<div class="tuto" style="grid-area:t_two">
 				
 			</div>
 
-			<div class="tuto">
+			<div class="tuto" style="grid-area:t_three">
 				
 			</div>
 
-			<div class="tuto">
+			<div class="tuto" style="grid-area:t_four">
 				
 			</div>
 		</div>
