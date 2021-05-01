@@ -16,7 +16,7 @@
 		}
 
 		.enterKey{
-			width: 250px; height: 360px;
+			width: 250px; height: 270px;
 			border: 2px dashed;
 			display: block;
 			margin-top: 150px; margin-left: auto; margin-right: auto;
@@ -45,6 +45,11 @@
 			vertical-align: center;
 		}
 
+		.edit_box1 h1{
+			font-size: 2em;
+			font-family: sans-serif;
+		}
+
 		.names{
 			margin-left: auto; margin-right: auto;
 			display: block;
@@ -56,14 +61,6 @@
 			content: attr(placeholder);
 			color: #555;
 		}
-
-		#h { margin-top: 170px}
-
-		#ec	{ margin-top: 20px }
-
-		#eh { margin-top: 10px }
-
-		#o { margin-top: 50px }
 
 
 		/*-----------------------------for media here--------------------------------*/
@@ -78,7 +75,6 @@
 				margin-bottom: 30px;
 			}
 
-			#h { margin-top: 100px }
 
 		/*----------------------------side--------------------------------*/
 		.enterKey { margin-top:100px; margin-right: auto; margin-left: auto; margin-bottom: 50px}
@@ -102,11 +98,9 @@
 			<div class="enterKey">
 				<input type="text" placeholder="Enter recipient's name" id="name">
 				<input type="text" placeholder="Enter name of the event" id="event">
-				<input type="text" placeholder="Enter address with postal code" id="address">
-				<input type="text" placeholder="Enter city" id="city">
-				<input type="text" placeholder="Enter country" id="country">
+				<input type="text" placeholder="Enter address with postal code" id="place">
 				<input type="date" placeholder="Enter date" id="date">
-				<input type="time" placeholder="Enter date" id="date">
+				<input type="time" placeholder="Enter date" id="time">
 				<input type="text" placeholder="Enter hosted by names" id="host">
 
 				<button onclick="saveContent()">Save as favourite content</button>
@@ -126,16 +120,12 @@
 		<div class="main">
 			<!------------------------------preview card here------------------------------->
 			<div class="edit_box1" id="box">
-				<div class="names" id="h">Join us!!</div>
-				<div class="names" id="n1" style="text-align: center;" placeholder="Enter recipient's name"></div>
-				<div class="names" id="ec" >event called</div>
-				<div class="names" id="e1" style="text-align: center;" placeholder="Enter event name"></div>
-				<div class="names" id="eh"> Event hosted by</div>
-				<div class="names" id="h1" style="text-align: center;" placeholder="host names"></div>
-				<div class="names" id="o"> On:</div>
-				<div class="names" id="d1" style="text-align: center;" placeholder="Enter date"></div>
-				<div class="names" id="t1" style="text-align: center;" placeholder="Enter time"></div>
-				<div class="names" id="ctry1" style="text-align: center;" placeholder="Enter country"></div>
+				<div class="names" id="n1" style="text-align: center; margin-top: 100px;" placeholder="Enter recipient's name"></div>
+				<h1 class="names" id="e1" style="text-align: center; margin-top: 30px;" placeholder="Enter event name"></h1>
+				<div class="names" id="h1" style="text-align: center; margin-top: 10px;" placeholder="host names"></div>
+				<div class="names" id="d1" style="text-align: center; margin-top: 10px;" placeholder="Enter date"></div>
+				<div class="names" id="t1" style="text-align: center; margin-top: 10px;" placeholder="Enter time"></div>
+				<div class="names" id="p1" style="text-align: center; margin-top: 10px;" placeholder="place"></div>
 			</div>
 
 		</div>
@@ -160,7 +150,7 @@
 			tc.style.backgroundImage = "url(images/v5.png)";
 		}
 		else if(value==2){
-			tc.style.backgroundImage = "url(images/v6.png)";
+			tc.style.backgroundImage = "url(images/v6.jpg)";
 		}
 	}
 	// ------------------------local storage----------------------------
@@ -169,7 +159,21 @@
 		var p = document.getElementById("place");
 		var d = document.getElementById("date");
 		var t = document.getElementById("time");
-		var ctry = document.getElementById("country");
+		var h = document.getElementById("host");
+
+		var display_n = document.getElementById("n1");
+		var display_e = document.getElementById("e1");
+		var display_p = document.getElementById("p1")
+		var display_d = document.getElementById("d1");
+		var display_t = document.getElementById("t1");
+		var display_h = document.getElementById("h1");
+
+		n.addEventListener('input', letter =>{display_n.textContent = letter.target.value;})
+		e.addEventListener('input', letter =>{display_e.textContent = letter.target.value;})
+		p.addEventListener('input', letter =>{display_p.textContent = letter.target.value;})
+		d.addEventListener('input', letter =>{display_d.textContent = letter.target.value;})
+		t.addEventListener('input', letter =>{display_t.textContent = letter.target.value;})
+		h.addEventListener('input', letter =>{display_h.textContent = letter.target.value;})
 
 
 
