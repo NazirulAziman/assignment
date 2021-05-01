@@ -1,29 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>InformalPage</title>
-</head>
-<link rel="stylesheet" href="style.css">
-<!-- ------------------------css internal style here-------------------------- -->
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>FormalPage</title>
+	</head>
+	<link rel="stylesheet" href="style.css">
+
+	<!-- ------------------------css internal style here-------------------------- -->
 	<style type="text/css">
 
 
 		/*--------------------=------------side here-------------------------------*/
 		.side{
 			background-image: url("images/nav.jpg");
-			flex: 30%;
-		}
-
-		.side h2{
-			text-align: center; color: black;
-			padding-top: 10px; padding-bottom: 10px;
+			flex: 20%;
 		}
 
 		.enterKey{
-			width: 250px; height: 460px;
+			width: 250px; height: 300px;
 			border: 2px dashed;
 			display: block;
-			margin-top: 150px; margin-left: auto; margin-right: auto;
+			margin-top: 70px; margin-left: auto; margin-right: auto;
 		}
 
 		.enterKey input, button, select{
@@ -31,21 +27,56 @@
 			display: block;
 		}
 
+		.greetingsList{
+			width: 300px; height: 170px;
+			display: block;
+			margin-top: 10px; margin-left: auto; margin-right: auto;
+			text-align: center;
+		}
+
+		.greetingsList h3{
+			font-size: 1.5em;
+		}
+
+		#saveBtn:hover{
+			color: darkgreen;
+			background-color: lightgreen;
+			border-radius: 10px;
+		}
+
+		#loadBtn:hover{
+			color: darkblue;
+			background-color: cyan;
+			border-radius: 10px;
+		}
+
+		#clearBtn:hover{
+			color: yellow;
+			background-color: red;
+			border-radius: 10px;
+		}
+
 
 		/*-----------------------------------main here--------------------------------*/
 		.main{
-			height: 100vh;
+			height: 90vh;
 			flex: 80%;
 		}
 
 		.edit_box1{
 			width: 600px; height: 700px;
-			background-image: url("images/v2.png");
+			background-color: white;
 			background-size: 100% 100%;
-			margin-top: 50px; margin-left: auto; margin-right: auto;
+			margin-top: 50px; margin-left: auto; margin-right: auto; margin-bottom: auto;
 			display: block;
 			border: 1px solid black;
 			text-align: center;
+			vertical-align: center;
+		}
+
+		.edit_box1 h1{
+			font-size: 2em;
+			font-family: sans-serif;
 		}
 
 		.names{
@@ -55,44 +86,31 @@
 			font-size: 1.2em;
 		}
 
-		.names[placeholder]:empty:before{
+		.names[placeholder]:empty:before, .edit_box1 h2[placeholder]:empty:before{
 			content: attr(placeholder);
 			color: #555;
 		}
 
-		#h {margin-top: 180px }
 
-		#h1 {margin-top: 20px}
-
-		#d1 {margin-top: 40px}
 		/*-----------------------------for media here--------------------------------*/
 		@media screen and (max-width:600px){
-		.main{
-			margin-bottom: 60px;
+			.main{
+				margin-bottom: 60px;
 			}
 
-		.edit_box1{
-			background-size: 100% 100%;
-			width: 400px; height: 500px;
-			margin-left: auto;
-			margin-right: auto;
-			display: block; 
-			margin-bottom: 30px;
-			margin-top: 20px;
+			.edit_box1{
+				background-size: 100% 100%;
+				width: 400px; height: 500px;
+				margin-bottom: 30px;
 			}
 
-		#h {margin-top: 100px }
 
-		/*----------------------------side---------------------------------------------*/
-		.enterKey { 
-			margin-top:80px; 
-			margin-right: auto; 
-			margin-left: auto; 
-			margin-bottom: 50px}
-			
+		/*----------------------------side--------------------------------*/
+		.enterKey { margin-top:100px; margin-right: auto; margin-left: auto; margin-bottom: 50px}
+		}
 	</style>
-<body>
-<!-- -------------------------header here--------------------------- -->
+	<body>
+	<!-- -------------------------header here--------------------------- -->
 	<header>
 		<img src="images/lg.png">
 		<a href="index.html">Home</a>
@@ -105,28 +123,35 @@
 		
 		<!-----------------------------side here--------------------------------->
 		<div class="side">
+
+			<div class="greetingsList">
+				<h3>Click on greetings list below to insert on preview cards</h3>
+				<div id="greetOne" class="gList"style="margin-top:10px;">السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</div>
+				<div id="greetTwo" class="gList"style="margin-top:10px;">Salam Sejahtera!</div>
+				<div id="greetThree" class="gList"style="margin-top:10px;">Hello!</div>
+				<div id="greetFour" class="gList"style="margin-top:10px;">Greetings!</div>
+				<div id="greetFive" class="gList"style="margin-top:10px;">Good day!</div>
+			</div>
+
 			<div class="enterKey">
-				<select id="selection" onchange="tempChange(this.value)">
-					<option value="0">choose background</option>
-					<option value="1">background 1</option>
-					<option value="2">background 2</option>			
-				</select>
-				<button onclick="temp1(1)" id="tone">template 1</button>
-				<button onclick="temp2(1)" id="ttwo" value="2">template 2</button>
 				<input type="text" placeholder="Enter recipient's name" id="name">
 				<input type="text" placeholder="Enter name of the event" id="event">
-				<input type="text" placeholder="Son/Daughter" id="child">
-				<input type="text" placeholder="Enter address with postal code" id="address">
-				<input type="text" placeholder="Enter city" id="city">
-				<input type="text" placeholder="Enter country" id="country">
+				<input type="text" placeholder="Enter address with postal code" id="place">
 				<input type="date" placeholder="Enter date" id="date">
-				<input type="time" placeholder="Enter date" id="date">
+				<input type="time" placeholder="Enter date" id="time">
 				<input type="text" placeholder="Enter hosted by names" id="host">
 
-				<button onclick="saveContent()">Save as favourite content</button>
-				<button onclick="loadContent()">Load favourite content</button>
+				<button onclick="saveContent()" id="saveBtn">Save as favourite content</button>
+				<button onclick="loadContent()" id="loadBtn">Load favourite content</button>
+				<button onclick="clearContent()" id="clearBtn">Clear favourite content</button>
 			</div>
-			
+
+			<select id="selection" onchange="tempChange(this.value)">
+					<option value="0">choose template</option>
+					<option value="1">background 1</option>
+					<option value="2">background 2</option>			
+			</select>
+
 		</div>
 
 
@@ -134,19 +159,13 @@
 		<div class="main">
 			<!------------------------------preview card here------------------------------->
 			<div class="edit_box1" id="box">
-				<div id="tone">
-				<div class="names" id="h">Hello,</div>
-				<div class="names" id="n1" style="text-align: center;" placeholder="Enter recipient's name"></div><br>
-				<div class="names" id="h1" style="text-align: center;" placeholder="host names"></div>
-				<div class="names" id="i">invited you to our</div>
-				<div class="names" id="c1" style="text-align: center;" placeholder="Son/Daughter name"></div>
-				<div class="names" id="e1" style="text-align: center;" placeholder="Event's Name"></div>
-				<div class="names" id="d1" style="text-align: center;" placeholder="Enter date"></div>
-				<div class="names" id="t1" style="text-align: center;" placeholder="Enter time"></div>
-				<div class="names" id="a1" style="text-align: center;" placeholder="Enter address with postal code"></div>
-				<div class="names" id="cty1" style="text-align: center;" placeholder="Enter city"></div>
-				<div class="names" id="ctry1" style="text-align: center;" placeholder="Enter country"></div>
-				</div>
+				<h2 id="greetings_result" style="text-align: center; margin-top: 100px;" placeholder="Choose greetings on the list"></h2>
+				<div class="names" id="n1" style="text-align: center; margin-top: 50px;" placeholder="Enter recipient's name"></div>
+				<h1 class="names" id="e1" style="text-align: center; margin-top: 50px;" placeholder="Enter event name"></h1>
+				<div class="names" id="h1" style="text-align: center; margin-top: 100px;" placeholder="Enter host names"></div>
+				<div class="names" id="d1" style="text-align: center; margin-top: 10px;" placeholder="Enter date"></div>
+				<div class="names" id="t1" style="text-align: center; margin-top: 10px;" placeholder="Enter time"></div>
+				<div class="names" id="p1" style="text-align: center; margin-top: 10px;" placeholder="place"></div>
 			</div>
 
 		</div>
@@ -159,101 +178,85 @@
 	<footer>
 		<h3>@copyright 2021</h3>
 	</footer>
-</body>
+	</body>
 
-<!-- -----------------------------javascript here-------------------------- -->
+	<!-- -----------------------------javascript here-------------------------- -->
 	<script type="text/javascript">
 	// --------------------------------change template-------------------------------
 	function tempChange(value){
 		var tc = document.getElementById("box")
 
 		if (value==1) {
-			tc.style.backgroundImage = "url(images/v2.png)";
+			tc.style.backgroundImage = "url(images/v5.png)";
 		}
 		else if(value==2){
-			tc.style.backgroundImage = "url(images/v3.png)";
+			tc.style.backgroundImage = "url(images/v6.jpg)";
 		}
 	}
-
-	function temp1() {
-		var x = document.getElementById("tone").textContent;
-		document.getElementById("box").innerHTML = x;
-	}
-	function temp2() {
-		var y = document.getElementById("ttwo").textContent;
-		document.getElementById("box").innerHTML = y ;
-	}
-
 	// ------------------------local storage----------------------------
+		var n = document.getElementById("name");
+		var e = document.getElementById("event");
+		var p = document.getElementById("place");
+		var d = document.getElementById("date");
+		var t = document.getElementById("time");
+		var h = document.getElementById("host");
+		var g = document.querySelector('.gList');
+
+		var display_n = document.getElementById("n1");
+		var display_e = document.getElementById("e1");
+		var display_p = document.getElementById("p1")
+		var display_d = document.getElementById("d1");
+		var display_t = document.getElementById("t1");
+		var display_h = document.getElementById("h1");
+
+		n.addEventListener('input', letter =>{display_n.textContent = letter.target.value;})
+		e.addEventListener('input', letter =>{display_e.textContent = letter.target.value;})
+		p.addEventListener('input', letter =>{display_p.textContent = letter.target.value;})
+		d.addEventListener('input', letter =>{display_d.textContent = letter.target.value;})
+		t.addEventListener('input', letter =>{display_t.textContent = letter.target.value;})
+		h.addEventListener('input', letter =>{display_h.textContent = letter.target.value;})
+
+		
+
+
+	//-----------------------------------save function--------------------------------------
 	function saveContent() {
-		var s = document.getElementById("selection");
-		var n = document.getElementById("name");
-		var c = document.getElementById("child");
-		var e = document.getElementById("event");
-		var p = document.getElementById("place");
-		var d = document.getElementById("date");
-		var t = document.getElementById("time");
-		var	h = document.getElementById("host");
-		var ct = document.getElementById("city");
-		var ctry = document.getElementById("country");
-
-		localStorage.setItem("selection", s.value);
 		localStorage.setItem("name", n.value);
-		localStorage.setItem("child", c.value);
 		localStorage.setItem("event", e.value);
 		localStorage.setItem("place", p.value);
 		localStorage.setItem("date", d.value);
 		localStorage.setItem("time", t.value);
+		localStorage.setItem("place", p.value);
 		localStorage.setItem("host", h.value);
-		localStorage.setItem("city", ct.value);
-		localStorage.setItem("country", ctry.value);
-		alert("Content Saved!");
-		window.location.reload();
+
 	}
 
+	//-----------------------------------load function--------------------------------------
 	function loadContent() {
-		var n = document.getElementById("name");
-		var c = document.getElementById("child");
-		var e = document.getElementById("event");
-		var p = document.getElementById("place");
-		var d = document.getElementById("date");
-		var t = document.getElementById("time");
-		var	h = document.getElementById("host");
-		var ct = document.getElementById("city");
-		var ctry = document.getElementById("country");
+		n.value = localStorage.getItem("name");
+		e.value = localStorage.getItem("event");
+		p.value = localStorage.getItem("place");
+		d.value = localStorage.getItem("date");
+		t.value = localStorage.getItem("time");
+		h.value = localStorage.getItem("host");
 
-		localStorage.setItem("name", n.value);
-		localStorage.setItem("child", c.value);
-		localStorage.setItem("event", e.value);
-		localStorage.setItem("place", p.value);
-		localStorage.setItem("date", d.value);
-		localStorage.setItem("time", t.value);
-		localStorage.setItem("host", h.value);
-		localStorage.setItem("city", ct.value);
-		localStorage.setItem("country", ctry.value);
+
+		// --------------------automatically load to cards--------------------------
+		n1.innerHTML = localStorage.getItem("name");
+		e1.innerHTML = localStorage.getItem("event");
+		p1.innerHTML = localStorage.getItem("place");
+		d1.innerHTML = localStorage.getItem("date");
+		t1.innerHTML = localStorage.getItem("time");
+		h1.innerHTML = localStorage.getItem("host");
 	}
 
-	function fillContent() {
-		var n = document.getElementById("name");
-		var c = document.getElementById("child");
-		var e = document.getElementById("event");
-		var p = document.getElementById("place");
-		var d = document.getElementById("date");
-		var t = document.getElementById("time");
-		var	h = document.getElementById("host");
-		var ct = document.getElementById("city");
-		var ctry = document.getElementById("country");
+	// ---------------------------------greetings list here------------------------------------
+		greetOne.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ";})
+		greetTwo.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Salam Sejahtera!";})
+		greetThree.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Hello!";})
+		greetFour.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Greetings!";})
+		greetFive.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Good Day!";})
 
-		nl.innerHTML = localStorage.getItem("name", n.value);
-		cl.innerHTML = localStorage.getItem("child", c.value);
-		el.innerHTML = localStorage.getItem("event", e.value);
-		pl.innerHTML = localStorage.getItem("place", p.value);
-		dl.innerHTML = localStorage.getItem("date", d.value);
-		tl.innerHTML = localStorage.getItem("time", t.value);
-		hl.innerHTML = localStorage.getItem("host", h.value);
-		ctl.innerHTML = localStorage.getItem("city", ct.value);
-		ctryl.innerHTML = localStorage.getItem("country", ctry.value);
-	}
 	</script>
 
-</html>
+	</html>
