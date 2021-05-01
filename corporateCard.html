@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CorporatePage</title>
+</head>
+<link rel="stylesheet" href="style.css">
+<!-- ------------------------css internal style here-------------------------- -->
+	<style type="text/css">
+
+
+		/*--------------------=------------side here-------------------------------*/
+		.side{
+			background-image: url("images/nav.jpg");
+			flex: 30%;
+		}
+
+		.side h2{
+			text-align: center; color: black;
+			padding-top: 10px; padding-bottom: 10px;
+		}
+
+		.enterKey{
+			width: 400px; height: 240px;
+			border: 2px dashed;
+			display: block;
+			margin-top: 20px; margin-left: auto; margin-right: auto;
+		}
+
+		.enterKey input, button{
+			margin-top: 10px; margin-left: auto; margin-right: auto;
+			display: block;
+		}
+
+		.logoList{
+			width: 400px; height: 280px;
+			border: 2px dashed black; border-radius: 10px;
+			margin-left: auto; margin-right: auto;
+			display: block;
+		}
+
+		.logo{
+			max-width: 400px;
+			width: 100px; height: 100px;
+			margin-top: 10px; margin-left: auto; margin-right: auto;
+			display: block;
+		}
+		
+		/*-----------------------------------main here--------------------------------*/
+		.main{
+			height: 100vh;
+			flex: 80%;
+		}
+
+		.edit_box{
+			width: 600px; height: 700px;
+			background-image: url("images/c1.png");
+			background-size: 100% 100%;
+			margin-top: 50px; margin-left: auto; margin-right: auto;
+			display: block;
+			border: 1px solid black;
+			text-align: center;
+		}
+
+		.edit_box h2{
+			margin-top: 110px; margin-left: auto; margin-right: auto;
+			display: block;
+		}
+
+		.logo_box{
+			width: 130px; height: 130px;
+			margin-top: 60px; margin-left: auto; margin-right: auto;
+			display: block; z-index: 1;
+		}
+
+		.logo_box:hover{
+			border: 1px dotted black;
+		}
+
+		.names{
+			margin-left: auto; margin-right: auto;
+			display: block;
+			width: 340px; border: none;
+			font-size: 1.2em;
+		}
+
+		.names[placeholder]:empty:before{
+			content: attr(placeholder);
+			color: #555;
+		}
+		.selectList{
+			margin-top: 20px; margin-left:auto; margin-right: auto;
+			display: block;
+		}
+
+		#n1{
+			margin-top: 90px;
+		}
+		#e1{
+			margin-top: 110px;
+		}
+		#h1, #a1, #d1{
+			margin-top: 10px;
+		}	
+
+
+		/*-----------------------------for media here--------------------------------*/
+		@media screen and (max-width:600px){
+			.main{
+				margin-bottom: 60px;
+			}
+
+			.logo_box{
+				width: 90px; height: 90px;
+				background-size: 100% 100%;
+				margin-top: 50px;
+			}
+
+			.logoList{
+				width: 300px; height: 200px;
+			}
+
+			.logo{
+				max-width: 250px;
+				width: 90px; height: 90px;
+				margin-left: auto; margin-right: auto;
+				display: block;
+			}
+
+			.edit_box{
+				background-size: 100% 100%;
+				width: 400px; height: 500px;
+				margin-bottom: 30px;
+			}
+
+			.edit_box h2{
+				margin-top: 60px;
+				font-size: 0.7em;
+			}
+			.names{
+				width: 200px;
+				font-size: 0.9em;
+			}
+
+			/*-----------------for preview div-------------*/
+			#n1{
+				margin-top: 60px;
+			}
+			#e1{
+				margin-top: 75px;
+			}
+			#h1, #a1, #d1{
+				margin-top: 5px;
+			}
+		}
+	</style>
+<body>
+<!-- -------------------------header here--------------------------- -->
+	<header>
+		<img src="images/lg.png">
+		<a href="index.html">Home</a>
+		<a href="#">Customization</a>
+		<a href="#">Favourite</a>
+	</header>
+
+
+	<div class="wrap">
+		
+		<!-----------------------------side here--------------------------------->
+		<div class="side">
+			<h2>Choose Logo Here :</h2>
+			<div class="logoList" ondrop="drop(event)" ondragover="allowDrop(event)">
+				<img src="images/Logo1.png" class="logo" id="drag1" class="picLogo" draggable="true" ondragstart="drag(event)" onclick="click()">
+				<img src="images/Logo2.png" class="logo" id="drag2" class="picLogo" draggable="true" ondragstart="drag(event)" onclick="click()">
+			</div>
+
+			<select id="selection" onchange="tempChange(this.value)" class="selectList">
+				<option value="0">choose template</option>
+				<option value="1">background 1</option>
+				<option value="2">background 2</option>			
+			</select>
+
+			<div class="enterKey">
+				<input type="text" placeholder="Enter recipient's name" id="name">
+				<input type="text" placeholder="Enter name of the event" id="event">
+				<input type="text" placeholder="Enter address" id="address">
+				<input type="date" placeholder="Enter date" id="date">
+				<input type="text" placeholder="Enter hosted by names" id="host">
+
+				<button onclick="saveContent()">Save as favourite content</button>
+				<button onclick="loadContent()">Load favourite content</button>
+			</div>
+			<br>
+		</div>
+
+
+		<!-- ----------------------------------main here------------------------------>
+		<div class="main">
+			<!------------------------------preview card here------------------------------->
+			<div class="edit_box" id="box">
+				<div class="logo_box" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+				<div class="names" id="n1" style="text-align: center;" placeholder="Enter recipient's name"></div>
+				<div class="names" id="h1" style="text-align: center;" placeholder="Enter hosted by names"></div>
+				<div class="names" id="e1" style="text-align: center;" placeholder="Enter name of the event"></div>
+				<div class="names" id="a1" style="text-align: center;" placeholder="Enter address"></div>
+				<div class="names" id="d1" style="text-align: center;" placeholder="Enter date"></div>
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<!-----------------------------footer here---------------------------->
+
+	<footer>
+		<h3>@copyright 2021</h3>
+	</footer>
+</body>
+
+<!-- -----------------------------javascript here-------------------------- -->
+	<script type="text/javascript">
+		// -------------------------------drag and drop here-----------------------------
+		function allowDrop(ev) {
+ 			ev.preventDefault();
+		}
+
+		function drag(ev) {
+ 			ev.dataTransfer.setData("text", ev.target.id);
+		}
+
+		function drop(ev) {
+ 			ev.preventDefault();
+  			var data = ev.dataTransfer.getData("text");
+  			var isLeft = 'drag1' == data || "drag2" == data;
+ 			ev.target.appendChild(document.getElementById(data));
+		}
+
+		// --------------------------------change template-------------------------------
+		function tempChange(value){
+		var tc = document.getElementById("box")
+			if (value==1) {
+				tc.style.backgroundImage = "url(images/c1.png)";
+			}
+			else if(value==2){
+				tc.style.backgroundImage = "url(images/c2.png)";
+			}
+		}
+
+	</script>
+
+</html>

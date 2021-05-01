@@ -1,0 +1,217 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>FormalPage</title>
+	</head>
+	<link rel="stylesheet" href="style.css">
+
+	<!-- ------------------------css internal style here-------------------------- -->
+	<style type="text/css">
+
+
+		/*--------------------=------------side here-------------------------------*/
+		.side{
+			background-image: url("images/nav.jpg");
+			flex: 30%;
+		}
+
+		.enterKey{
+			width: 250px; height: 360px;
+			border: 2px dashed;
+			display: block;
+			margin-top: 150px; margin-left: auto; margin-right: auto;
+		}
+
+		.enterKey input, button, select{
+			margin-top: 10px; margin-left: auto; margin-right: auto;
+			display: block;
+		}
+
+
+		/*-----------------------------------main here--------------------------------*/
+		.main{
+			height: 100vh;
+			flex: 80%;
+		}
+
+		.edit_box1{
+			width: 600px; height: 700px;
+			background-color: white;
+			background-size: 100% 100%;
+			margin-top: 50px; margin-left: auto; margin-right: auto; margin-bottom: auto;
+			display: block;
+			border: 1px solid black;
+			text-align: center;
+			vertical-align: center;
+		}
+
+		.names{
+			margin-left: auto; margin-right: auto;
+			display: block;
+			width: 340px; border: none;
+			font-size: 1.2em;
+		}
+
+		.names[placeholder]:empty:before{
+			content: attr(placeholder);
+			color: #555;
+		}
+
+		#h { margin-top: 170px}
+
+		#ec	{ margin-top: 20px }
+
+		#eh { margin-top: 10px }
+
+		#o { margin-top: 50px }
+
+
+		/*-----------------------------for media here--------------------------------*/
+		@media screen and (max-width:600px){
+			.main{
+				margin-bottom: 60px;
+			}
+
+			.edit_box1{
+				background-size: 100% 100%;
+				width: 400px; height: 500px;
+				margin-bottom: 30px;
+			}
+
+			#h { margin-top: 100px }
+
+		/*----------------------------side--------------------------------*/
+		.enterKey { margin-top:100px; margin-right: auto; margin-left: auto; margin-bottom: 50px}
+		}
+	</style>
+	<body>
+	<!-- -------------------------header here--------------------------- -->
+	<header>
+		<img src="images/lg.png">
+		<a href="index.html">Home</a>
+		<a href="#">Customization</a>
+		<a href="#">Favourite</a>
+	</header>
+
+
+	<div class="wrap">
+		
+		<!-----------------------------side here--------------------------------->
+		<div class="side">
+
+			<div class="enterKey">
+				<select id="selection" onchange="tempChange(this.value)">
+					<option value="0">choose template</option>
+					<option value="1">background 1</option>
+					<option value="2">background 2</option>			
+				</select>
+				<input type="text" placeholder="Enter recipient's name" id="name">
+				<input type="text" placeholder="Enter name of the event" id="event">
+				<input type="text" placeholder="Enter address with postal code" id="address">
+				<input type="text" placeholder="Enter city" id="city">
+				<input type="text" placeholder="Enter country" id="country">
+				<input type="date" placeholder="Enter date" id="date">
+				<input type="time" placeholder="Enter date" id="date">
+				<input type="text" placeholder="Enter hosted by names" id="host">
+
+				<button onclick="saveContent()">Save as favourite content</button>
+				<button onclick="loadContent()">Load favourite content</button>
+			</div>
+			
+		</div>
+
+
+		<!-- ----------------------------------main here------------------------------>
+		<div class="main">
+			<!------------------------------preview card here------------------------------->
+			<div class="edit_box1" id="box">
+				<div class="names" id="h">Join us!!</div>
+				<div class="names" id="n1" style="text-align: center;" placeholder="Enter recipient's name"></div>
+				<div class="names" id="ec" >event called</div>
+				<div class="names" id="e1" style="text-align: center;" placeholder="Enter event name"></div>
+				<div class="names" id="eh"> Event hosted by</div>
+				<div class="names" id="h1" style="text-align: center;" placeholder="host names"></div>
+				<div class="names" id="o"> On:</div>
+				<div class="names" id="d1" style="text-align: center;" placeholder="Enter date"></div>
+				<div class="names" id="t1" style="text-align: center;" placeholder="Enter time"></div>
+				<div class="names" id="ctry1" style="text-align: center;" placeholder="Enter country"></div>
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<!-----------------------------footer here---------------------------->
+
+	<footer>
+		<h3>@copyright 2021</h3>
+	</footer>
+	</body>
+
+	<!-- -----------------------------javascript here-------------------------- -->
+	<script type="text/javascript">
+	// --------------------------------change template-------------------------------
+	function tempChange(value){
+		var tc = document.getElementById("box")
+
+		if (value==1) {
+			tc.style.backgroundImage = "url(images/v5.png)";
+		}
+		else if(value==2){
+			tc.style.backgroundImage = "url(images/v6.png)";
+		}
+	}
+	// ------------------------local storage----------------------------
+	function saveContent() {
+		var n = document.getElementById("name");
+		var e = document.getElementById("event");
+		var p = document.getElementById("place");
+		var d = document.getElementById("date");
+		var t = document.getElementById("time");
+		var ctry = document.getElementById("country");
+
+		localStorage.setItem("name", n.value);
+		localStorage.setItem("event", e.value);
+		localStorage.setItem("place", p.value);
+		localStorage.setItem("date", d.value);
+		localStorage.setItem("time", t.value);
+		localStorage.setItem("country", ctry.value);
+		alert("Content Saved!");
+		window.location.reload();
+	}
+
+	function loadContent() {
+		var n = document.getElementById("name");
+		var e = document.getElementById("event");
+		var p = document.getElementById("place");
+		var d = document.getElementById("date");
+		var t = document.getElementById("time");
+		var ctry = document.getElementById("country");
+
+		localStorage.setItem("name", n.value);
+		localStorage.setItem("event", e.value);
+		localStorage.setItem("place", p.value);
+		localStorage.setItem("date", d.value);
+		localStorage.setItem("time", t.value);
+		localStorage.setItem("country", ctry.value);
+	}
+
+	function fillContent() {
+		var n = document.getElementById("name");
+		var e = document.getElementById("event");
+		var p = document.getElementById("place");
+		var d = document.getElementById("date");
+		var t = document.getElementById("time");
+		var ctry = document.getElementById("country");
+
+		nl.innerHTML = localStorage.getItem("name", n.value);
+		el.innerHTML = localStorage.getItem("event", e.value);
+		pl.innerHTML = localStorage.getItem("place", p.value);
+		dl.innerHTML = localStorage.getItem("date", d.value);
+		t1.innerHTML = localStorage.getItem("time", t.value);
+		ctryl.innerHTML = localStorage.getItem("country", ctry.value);
+	}
+	</script>
+
+	</html>
