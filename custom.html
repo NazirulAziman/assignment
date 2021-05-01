@@ -134,9 +134,9 @@
 		border:1px dashed black;
 	}
 
-	.send_box input{
+	.send_box input, .send_box button{
 		display: block;
-		margin-top: 10px; margin-left: auto; margin-right: auto;
+		margin-top: 5px; margin-left: auto; margin-right: auto;
 	}
 
 
@@ -239,8 +239,12 @@
 			height: 10px;
 		}
 
+		#colorPick{
+			margin-left: 70px;
+		}
+
 		#bgColor, #fontColor, .colorLabel{
-			margin-left: auto; margin-right: auto;
+			margin-left: 20px; margin-right: auto;
 			display: inline-block;
 		}
 
@@ -250,7 +254,7 @@
 
 		/*-------------------main here------------------------*/
 		.main{
-			margin-bottom: 60px;
+			margin-bottom: 90px;
 			order: 3;
 		}
 
@@ -276,6 +280,11 @@
 
 		#ed1{
 			width: 300px;
+		}
+
+		.send_box{
+			height: 60px;
+			margin-top: 10px;
 		}
 
 		/*------------------other side here------------------*/
@@ -309,7 +318,7 @@
 	<a href="index.html">Home</a>
 	<a href="custom.html">Customization</a>
 	<a href="#">Gallery</a>
-	<a href="#">About us</a>
+	<a href="about_us.html">About us</a>
 </header>
 <div class="wrap">
 	<!----------------------side here--------------------->
@@ -324,7 +333,7 @@
 		</div>
 
 		<!--------------------------------color picker here----------------------------------->
-		
+		<div id="colorPick">
 		<!------------------- for background ----------------->
 		<input type="color" id="bgColor" value="#ffffff">
 		<label class="colorLabel">Background Color</label>
@@ -332,7 +341,7 @@
 		<!------------------ for font ----------------------->
 		<input type="color" id="fontColor" value="#000000">
 		<label class="colorLabel">Font Color</label>
-		
+		</div>
 
 
 		<!------------------------------------background change here---------------------------------->
@@ -371,7 +380,7 @@
 		</div>
 		<div class="send_box">
 			<input type="email" placeholder="Enter recipient gmail address" size="30" pattern=".+@gmail.com"required>
-			<input type="submit" id="submitBtn" value="Submit to the recipient">
+			<button id="submitBtn">Submit to the recipient</button>
 		</div>
 	</div>
 

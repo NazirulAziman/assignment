@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>About us</title>
+</head>
+<link rel="stylesheet" href="style.css">
+
+<style type="text/css">
+	.wraps{
+		display: grid;
+		grid-template-areas: 
+		"one two";
+	}
+
+	.forContent{
+		width: 1350px; height: 500px;
+		display: block;
+		font-size: 2em;
+		margin-top: 50px; margin-left: auto; margin-right: auto;
+	}
+
+	.forContent h1{
+		font-size: 3em;
+	}
+
+	.forImages img{
+		max-width: 400px;
+	}
+
+	.forImages{
+		text-align: center;
+		margin-left: auto; margin-right: auto;
+		display: block;
+	}
+
+	.box{
+		width: 300px; height: 400px;
+		border:1px solid black;
+	}
+
+	@media screen and (max-width: 600px){
+		.wraps{
+			height: 90vh;
+			grid-template-areas: 
+			"one" 
+			"two";
+		}
+
+		.forContent{
+			width: 500px; height: 600px;
+			font-size: 1.3em;
+			margin-top: 40px;
+			text-align: center;
+			order:1;
+		}
+
+		.forImages{
+			height: 90vh;
+			order:2;
+		}
+
+		.forImages img{
+			max-width: 200px;
+		}
+
+		.box textarea{
+			height: 100px;
+		}
+	}
+</style>
+
+<body>
+
+<header>
+	<img src="images/lg.png">
+	<a href="index.html">Home</a>
+	<a href="custom.html">Customization</a>
+	<a href="#">Gallery</a>
+	<a href="about_us.html">About us</a>
+</header>
+
+<div class="wrap">
+	
+	<div class="forImages" style="grid-area:one">
+		<img src="images/cat.gif">
+		<div class="box">
+			<h1>Contact Us!</h1>
+			<input type="text" placeholder="Enter name" style="margin-top: 10px;">
+			<input type="text" placeholder="Enter email address" style="margin-top: 10px;">
+			<input type="text" placeholder="Enter subject" style="margin-top: 10px;">
+			<textarea placeholder="Your Message" style="margin-top: 10px;" rows="10" cols="35"></textarea>
+			<br>
+			<button style="margin-top: 10px;">Send message</button>
+		</div>
+	</div>
+
+	<div class="forContent" style="grid-area:two">
+		<h1>About Us!</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	</div>
+
+
+
+</div>
+
+
+<footer>
+	<h3>@copyright 2021</h3>
+</footer>
+
+</body>
+</html>
