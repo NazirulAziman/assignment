@@ -63,10 +63,14 @@
 	}
 
 	.dropDown{
-		margin-top: 20px;
+		margin-top: 5px;
 	}
 
-	
+	#bckImg{
+		width: 180px; height: 150px;
+		margin-left: 30px;
+		text-align: justify;
+	}
 
 	/*--------------------for main here----------------------*/
 	.main{
@@ -127,9 +131,14 @@
 	}
 
 	#btn, #btn1{
-		margin-top: 20px;
+		margin-top: 10px;
 		margin-left: auto; margin-right: auto;
 		display: block;
+	}
+
+	#fFamily{
+		margin-top: 5px;
+		margin-left: 100px;
 	}
 
 	#submitBtn:hover{
@@ -139,7 +148,7 @@
 	}
 
 	.send_box{
-		width: 300px; height: 80px;
+		width: 300px; height: 60px;
 		display: block;
 		margin-top: 20px; margin-left: auto; margin-right: auto;
 		border:1px dashed black;
@@ -360,38 +369,49 @@
 
 		<div class="sideBox">
 		<!--------------------------------color picker here----------------------------------->
-		<div id="colorPick" style="grid-area:cPick">
 			<!------------------- for background ----------------->
+			<div>
 			<input type="color" id="bgColor" value="#ffffff">
 			<label class="colorLabel">Background Color</label>
 
 			<!------------------ for font ----------------------->
 			<input type="color" id="fontColor" value="#000000">
 			<label class="colorLabel">Font Color</label>
-		</div>
+			</div>
 
-
-		<div class="dropDown" style="grid-area:dpDown">
 			<!------------------------------------background change here---------------------------------->
-			<select onchange="styleChange(this.value)" id="btn">
-				<option value="0">Choose Background Theme</option>
-				<option value="1">Sports</option>
-				<option value="2">Parties</option>
-				<option value="3">Islamic</option>
-				<option value="4">Musics</option>
-			</select>
+			<div id="bckImg">
+			<h3>Choose Background:</h3>
+			<input type="radio" onchange="styleChange(this.value)" id="sports" name="bgStyle" value="1">
+			<label for="sports">Sports</label>
+			<br>
+			<input type="radio" onchange="styleChange(this.value)" id="parties" name="bgStyle" value="2">
+			<label for="parties">Parties</label>
+			<br>
+			<input type="radio" onchange="styleChange(this.value)" id="islamic" name="bgStyle" value="3">
+			<label for="islamic">Islamic</label>
+			<br>
+			<input type="radio" onchange="styleChange(this.value)" id="musics" name="bgStyle" value="4">
+			<label for="musics">Musics</label>
+			</div>
 
 		<!-------------------------------------font family here-------------------------------------->
-			<select onchange="fontChange(this.value)" id="btn">
-				<option value="0">Change font family</option>
+			<select onchange="fontFamily(this.value)" id="btn">
+				<option value="0">Choose Font Style</option>
 				<option value="1">Arial</option>
-				<option value="2">Impact</option>
-				<option value="3">Serif</option>
+				<option value="2">Tahoma</option>
+				<option value="3">Helvetica</option>
+				<option value="4">Times New Roman</option>
+				<option value="5">Calibri</option>
+				<option value="6">Lucida Console</option>
+				<option value="7">Courier New</option>
+				<option value="8">Papyrus</option>
+				<option value="9">Brush Script MT</option>
+				<option value="10">Lucida Handwriting</option>
 			</select>
 
 		</div>
-		</div>
-
+		
 		<br>
 
 	</div>	
@@ -496,9 +516,8 @@
 	}
 
 	//---------------background image change-----------------------
-
 	function styleChange(value){
-		var bgImage = document.getElementById("box");
+	var bgImage = document.getElementById("box");
 		if (value==1){
 			bgImage.style.backgroundImage="url(images/v11.png)"
 		}
@@ -531,13 +550,9 @@
 	text.style.color = ev.target.value;
 	},false);
 
-
-	//------------------------Change font family---------------------
-
 	
 	//----------------------localstorage here-----------------------
 
-		var g = document.getElementById("greetings_result")
 		var n = document.getElementById("name");
 		var e = document.getElementById("event");
 		var ed = document.getElementById("descriptions");
@@ -553,6 +568,42 @@
 		var display_h = document.getElementById("h1");
 
 
+	//------------------------Change font family---------------------
+	function fontFamily(value){
+		if(value==1){
+			document.getElementById("box").style.fontFamily = "Arial";
+		}
+		else if(value==2){
+			document.getElementById("box").style.fontFamily = "Tahoma";
+		}
+		else if(value==3){
+			document.getElementById("box").style.fontFamily = "Helvetica";
+		}
+		else if(value==4){
+			document.getElementById("box").style.fontFamily = "Times";
+		}
+		else if(value==5){
+			document.getElementById("box").style.fontFamily = "Calibri";
+		}
+		else if(value==6){
+			document.getElementById("box").style.fontFamily = "Impact";
+		}
+		else if(value==7){
+			document.getElementById("box").style.fontFamily = "Courier New";
+		}
+		else if(value==8){
+			document.getElementById("box").style.fontFamily = "Papyrus";
+		}
+		else if(value==9){
+			document.getElementById("box").style.fontFamily = "Brush Script MT";
+		}
+		else if(value==10){
+			document.getElementById("box").style.fontFamily = "Garamond";
+		}
+		else if(value==11){
+			document.getElementById("box").style.fontFamily = "Lucida Handwriting";
+		}
+	}
 		//---------------this will display to preview card when typing on the input----------------
 		n.addEventListener('input', letter =>{display_n.textContent = letter.target.value;})
 		e.addEventListener('input', letter =>{display_e.textContent = letter.target.value;})
@@ -571,7 +622,7 @@
 
 
 
-
+	//-------------------------------------save content--------------------------------
 	function saveContent(){
 		localStorage.setItem("name",display_n.textContent)
 		localStorage.setItem("event",display_e.textContent)
