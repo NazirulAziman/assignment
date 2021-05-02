@@ -58,6 +58,13 @@
 			border-radius: 10px;
 		}
 
+		#greetOne:hover, #greetTwo:hover, 
+		#greetThree:hover, #greetFour:hover, #greetFive:hover{
+			background-color: #1F201F;
+			border-radius: 20px;
+			color: yellow;
+		}
+
 
 		/*-----------------------------------main here--------------------------------*/
 		.main{
@@ -265,6 +272,11 @@
 		d1.innerHTML = localStorage.getItem("date");
 		t1.innerHTML = localStorage.getItem("time");
 		h1.innerHTML = localStorage.getItem("host");
+	}
+
+	//--------------------------------clear content----------------------------------
+	function clearContent(){
+		window.location.reload();
 	}
 
 	// ---------------------------------greetings list here------------------------------------
