@@ -25,7 +25,7 @@
 
 		.enterKey input, button, select{
 			margin-top: 10px; margin-left: auto; margin-right: auto;
-			display: block;
+			display: inline-block;
 		}
 
 		.greetingsList{
@@ -157,7 +157,6 @@
 			.enterKey { 
 				margin-top: 20px; margin-bottom: 10px;
 				width: 60px; height: 60px;
-				border: 1px dashed;
 			}
 
 			.greetingsList h3{
@@ -215,9 +214,11 @@
 				<input type="text" placeholder="Enter name of the event" id="event">
 				<input type="text" placeholder="Enter address" id="place">
 				<input type="date" placeholder="Enter date" id="date">
+				<br>
 				<input type="time" placeholder="Enter date" id="time">
 				<input type="text" placeholder="Enter hosted by names" id="host">
 
+				<br>
 				<button onclick="saveContent()" id="saveBtn">Save as favourite content</button>
 				<button onclick="loadContent()" id="loadBtn">Load favourite content</button>
 				<button onclick="clearContent()" id="clearBtn">Clear favourite content</button>
