@@ -21,7 +21,7 @@
 			width: 250px; height: 300px;
 			border: 2px dashed;
 			display: block;
-			margin-top: 70px; margin-left: auto; margin-right: auto;
+			margin-top: 20px; margin-left: auto; margin-right: auto;
 		}
 
 		.enterKey input, button, select{
@@ -30,7 +30,7 @@
 		}
 
 		.greetingsList{
-			width: 300px; height: 170px;
+			width: 300px; height: 210px;
 			display: block;
 			margin-top: 10px; margin-left: auto; margin-right: auto;
 			text-align: center;
@@ -63,6 +63,27 @@
 			background-color: #1F201F;
 			border-radius: 20px;
 			color: yellow;
+		}
+
+		.selection{
+			width: 300px; height: 240px;
+			margin-top: 20px; margin-left: auto; margin-right: auto;
+			text-align: center;
+			border: 2px dashed;
+		}
+
+		.selection h3{
+			font-size: 1.3em;
+		}
+
+		.selection img{
+			display: inline-block;
+			margin-left: 5px;
+			width: 130px; height: 160px;
+		}
+
+		.selection img:hover{
+			border: 2px dashed blue;
 		}
 
 
@@ -100,6 +121,14 @@
 			color: #555;
 		}
 
+		#greetings_result{
+			margin-top: 100px;
+		}
+
+		#e1{
+			font-size: 2em;
+			font-family: tahoma;
+		}
 
 		/*-----------------------------for media here--------------------------------*/
 		@media screen and (max-width:600px){
@@ -110,12 +139,36 @@
 			.edit_box1{
 				background-size: 100% 100%;
 				width: 400px; height: 500px;
-				margin-bottom: 30px;
+				margin-bottom: 70px;
+				font-size: 0.8em;
+			}
+
+			.edit_box1 h1, h2{
+				font-size: 1.2em;
+			}
+
+			#greetings_result{
+				margin-top: 80px;
 			}
 
 
 		/*----------------------------side--------------------------------*/
-		.enterKey { margin-top:100px; margin-right: auto; margin-left: auto; margin-bottom: 50px}
+			.enterKey { 
+				margin-top:100px; margin-right: auto; margin-left: auto; margin-bottom: 50px;
+			}
+
+			.greetingsList h3{
+				font-size: 1.2em;
+			}
+
+			.enterKey{
+				width: 500px; height: 200px;
+			}
+
+			.enterKey input, button, select{
+				margin-left: auto; margin-right: auto;
+				display: inline-block;
+			}
 		}
 	</style>
 	<body>
@@ -143,6 +196,12 @@
 				<div id="greetFive" class="gList"style="margin-top:10px;">Good day!</div>
 			</div>
 
+			<div class="selection">
+				<h3>Choose your background:</h3>
+				<img src="images/v5.png" id="styleOne">
+				<img src="images/v6.jpg" id="styleTwo">
+			</div>
+
 			<div class="enterKey">
 				<input type="text" placeholder="Enter recipient's name" id="name">
 				<input type="text" placeholder="Enter name of the event" id="event">
@@ -155,12 +214,6 @@
 				<button onclick="loadContent()" id="loadBtn">Load favourite content</button>
 				<button onclick="clearContent()" id="clearBtn">Clear favourite content</button>
 			</div>
-
-			<select id="selection" onchange="tempChange(this.value)">
-					<option value="0">choose template</option>
-					<option value="1">background 1</option>
-					<option value="2">background 2</option>			
-			</select>
 
 		</div>
 
@@ -193,16 +246,9 @@
 	<!-- -----------------------------javascript here-------------------------- -->
 	<script type="text/javascript">
 	// --------------------------------change template-------------------------------
-	function tempChange(value){
-		var tc = document.getElementById("box")
+		styleOne.addEventListener("click",letter =>{document.getElementById("box").style.backgroundImage = "url(images/v2.png)";})
+		styleTwo.addEventListener("click",letter =>{document.getElementById("box").style.backgroundImage = "url(images/v3.png)";})
 
-		if (value==1) {
-			tc.style.backgroundImage = "url(images/v2.png)";
-		}
-		else if(value==2){
-			tc.style.backgroundImage = "url(images/v3.png)";
-		}
-	}
 	// ------------------------local storage----------------------------
 		var n = document.getElementById("name");
 		var e = document.getElementById("event");
