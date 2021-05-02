@@ -20,12 +20,12 @@
 		.enterKey{
 			width: 250px; height: 300px;
 			display: block;
-			margin-top: 30px; margin-left: auto; margin-right: auto;
+			margin-top: 20px; margin-left: auto; margin-right: auto;
 		}
 
 		.enterKey input, button, select{
 			margin-top: 10px; margin-left: auto; margin-right: auto;
-			display: inline-block;
+			display: block;
 		}
 
 		.greetingsList{
@@ -65,7 +65,7 @@
 		}
 
 		.selection{
-			width: 300px; height: 240px;
+			width: 280px; height: 220px;
 			margin-top: 20px; margin-left: auto; margin-right: auto;
 			text-align: center;
 			border: 2px dashed;
@@ -78,11 +78,16 @@
 		.selection img{
 			display: inline-block;
 			margin-left: 5px;
-			width: 130px; height: 160px;
+			width: 100px; height: 140px;
 		}
 
 		.selection img:hover{
 			border: 2px dashed blue;
+		}
+
+		#btn{
+			margin-top: 10px; margin-left: auto; margin-right: auto;
+			display: block;
 		}
 
 
@@ -154,10 +159,6 @@
 			}
 
 		/*----------------------------side--------------------------------*/
-			.enterKey { 
-				margin-top: 20px; margin-bottom: 10px;
-				width: 60px; height: 60px;
-			}
 			.greetingsList{
 				height: 230px;
 			}
@@ -180,6 +181,10 @@
 
 			#e1{
 			font-size: 1.2em;
+			}
+
+			.selection{
+				margin-top: 10px;
 			}
 		}
 
@@ -215,6 +220,16 @@
 				<img src="images/v6.jpg" id="styleTwo">
 			</div>
 
+			<!-------------------------------------font family here-------------------------------------->
+			<select onchange="fontFamily(this.value)" id="btn">
+				<option value="0">Choose Font Style</option>
+				<option value="1">Arial</option>
+				<option value="2">Tahoma</option>
+				<option value="3">Helvetica</option>
+				<option value="4">Times New Roman</option>
+				<option value="5">Calibri</option>
+			</select>
+
 			<div class="enterKey">
 				<input type="text" placeholder="Enter recipient's name" id="name">
 				<input type="text" placeholder="Enter name of the event" id="event">
@@ -224,7 +239,6 @@
 				<input type="time" placeholder="Enter date" id="time">
 				<input type="text" placeholder="Enter hosted by names" id="host">
 
-				<br>
 				<button onclick="saveContent()" id="saveBtn">Save as favourite content</button>
 				<button onclick="loadContent()" id="loadBtn">Load favourite content</button>
 				<button onclick="clearContent()" id="clearBtn">Clear favourite content</button>
@@ -290,6 +304,24 @@
 		t.addEventListener('input', letter =>{display_t.textContent = letter.target.value;})
 		h.addEventListener('input', letter =>{display_h.textContent = letter.target.value;})
 
+	//------------------------Change font family---------------------
+	function fontFamily(value){
+		if(value==1){
+			document.getElementById("box").style.fontFamily = "Arial";
+		}
+		else if(value==2){
+			document.getElementById("box").style.fontFamily = "Tahoma";
+		}
+		else if(value==3){
+			document.getElementById("box").style.fontFamily = "Helvetica";
+		}
+		else if(value==4){
+			document.getElementById("box").style.fontFamily = "Times";
+		}
+		else if(value==5){
+			document.getElementById("box").style.fontFamily = "Calibri";
+		}
+	}
 
 	//-----------------------------------save function--------------------------------------
 	function saveContent() {

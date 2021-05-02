@@ -19,7 +19,6 @@
 
 		.enterKey{
 			width: 250px; height: 300px;
-			border: 2px dashed;
 			display: block;
 			margin-top: 20px; margin-left: auto; margin-right: auto;
 		}
@@ -86,6 +85,11 @@
 			border: 2px dashed blue;
 		}
 
+		#btn{
+			margin-top: 10px; margin-left: auto; margin-right: auto;
+			display: block;
+		}
+
 
 		/*-----------------------------------main here--------------------------------*/
 		.main{
@@ -138,13 +142,14 @@
 
 			.edit_box1{
 				background-size: 100% 100%;
-				width: 400px; height: 500px;
+				width: 380px; height: 500px;
 				margin-bottom: 70px;
 				font-size: 0.8em;
 			}
 
-			.edit_box1 h1, h2{
+			.edit_box1 h1{
 				font-size: 1.2em;
+				margin-top: 10px;
 			}
 
 			#greetings_result{
@@ -153,8 +158,15 @@
 
 
 		/*----------------------------side--------------------------------*/
-			.enterKey { 
-				margin-top:100px; margin-right: auto; margin-left: auto; margin-bottom: 50px;
+			.enterKey{
+				width: 500px; height: 200px;
+				margin-left: 10px;
+			}
+
+			.enterKey input, button, select{
+				width: 170px;
+				margin-left: 10px;
+				display: block;
 			}
 
 			.greetingsList h3{
@@ -168,6 +180,10 @@
 			.enterKey input, button, select{
 				margin-left: auto; margin-right: auto;
 				display: inline-block;
+			}
+
+			#e1{
+			font-size: 1.5em;
 			}
 		}
 	</style>
@@ -198,16 +214,31 @@
 
 			<div class="selection">
 				<h3>Choose your background:</h3>
-				<img src="images/v5.png" id="styleOne">
-				<img src="images/v6.jpg" id="styleTwo">
+				<img src="images/v2.png" id="styleOne">
+				<img src="images/v3.png" id="styleTwo">
 			</div>
+
+			<!-------------------------------------font family here-------------------------------------->
+			<select onchange="fontFamily(this.value)" id="btn">
+				<option value="0">Choose Font Style</option>
+				<option value="1">Arial</option>
+				<option value="2">Tahoma</option>
+				<option value="3">Helvetica</option>
+				<option value="4">Times New Roman</option>
+				<option value="5">Calibri</option>
+				<option value="6">Lucida Console</option>
+				<option value="7">Courier New</option>
+				<option value="8">Papyrus</option>
+				<option value="9">Brush Script MT</option>
+				<option value="10">Lucida Handwriting</option>
+			</select>
 
 			<div class="enterKey">
 				<input type="text" placeholder="Enter recipient's name" id="name">
 				<input type="text" placeholder="Enter name of the event" id="event">
-				<input type="text" placeholder="Enter address with postal code" id="place">
+				<input type="text" placeholder="Enter address" id="address">
 				<input type="date" placeholder="Enter date" id="date">
-				<input type="time" placeholder="Enter date" id="time">
+				<input type="time" placeholder="Enter time" id="time">
 				<input type="text" placeholder="Enter hosted by names" id="host">
 
 				<button onclick="saveContent()" id="saveBtn">Save as favourite content</button>
@@ -222,13 +253,15 @@
 		<div class="main">
 			<!------------------------------preview card here------------------------------->
 			<div class="edit_box1" id="box">
-				<h2 id="greetings_result" style="text-align: center; margin-top: 100px;" placeholder="Choose greetings on the list"></h2>
-				<div class="names" id="n1" style="text-align: center; margin-top: 50px;" placeholder="Enter recipient's name"></div>
-				<h1 class="names" id="e1" style="text-align: center; margin-top: 50px;" placeholder="Enter event name"></h1>
-				<div class="names" id="h1" style="text-align: center; margin-top: 100px;" placeholder="Enter host names"></div>
-				<div class="names" id="d1" style="text-align: center; margin-top: 10px;" placeholder="Enter date"></div>
+				<h2 id="greetings_result" style="text-align: center;" placeholder="Choose greetings on the list"></h2>
+				<div class="names" id="n1" style="text-align: center; margin-top: 20px;" placeholder="Enter recipient's name"></div>
+				<h3>Your Invited for:</h3>
+				<h1 class="names" id="e1" style="text-align: center; margin-top: 20px;" placeholder="Enter event name"></h1>
+				<div class="names" id="d1" style="text-align: center; margin-top: 50px;" placeholder="Enter date"></div>
 				<div class="names" id="t1" style="text-align: center; margin-top: 10px;" placeholder="Enter time"></div>
-				<div class="names" id="p1" style="text-align: center; margin-top: 10px;" placeholder="place"></div>
+				<div class="names" id="a1" style="text-align: center; margin-top: 10px;" placeholder="Enter address"></div>
+				<h3 style="text-align: center; margin-top: 60px;">Hosted by:</h3>
+				<div class="names" id="h1" style="text-align: center; margin-top: 10px;" placeholder="Enter host names"></div>
 			</div>
 
 		</div>
@@ -252,26 +285,61 @@
 	// ------------------------local storage----------------------------
 		var n = document.getElementById("name");
 		var e = document.getElementById("event");
-		var p = document.getElementById("place");
+		var a = document.getElementById("address");
 		var d = document.getElementById("date");
 		var t = document.getElementById("time");
 		var h = document.getElementById("host");
-		var g = document.querySelector('.gList');
 
 		var display_n = document.getElementById("n1");
 		var display_e = document.getElementById("e1");
-		var display_p = document.getElementById("p1")
+		var display_a = document.getElementById("a1")
 		var display_d = document.getElementById("d1");
 		var display_t = document.getElementById("t1");
 		var display_h = document.getElementById("h1");
 
 		n.addEventListener('input', letter =>{display_n.textContent = letter.target.value;})
 		e.addEventListener('input', letter =>{display_e.textContent = letter.target.value;})
-		p.addEventListener('input', letter =>{display_p.textContent = letter.target.value;})
+		a.addEventListener('input', letter =>{display_a.textContent = letter.target.value;})
 		d.addEventListener('input', letter =>{display_d.textContent = letter.target.value;})
 		t.addEventListener('input', letter =>{display_t.textContent = letter.target.value;})
 		h.addEventListener('input', letter =>{display_h.textContent = letter.target.value;})
 
+	//------------------------Change font family---------------------
+	function fontFamily(value){
+		if(value==1){
+			document.getElementById("box").style.fontFamily = "Arial";
+		}
+		else if(value==2){
+			document.getElementById("box").style.fontFamily = "Tahoma";
+		}
+		else if(value==3){
+			document.getElementById("box").style.fontFamily = "Helvetica";
+		}
+		else if(value==4){
+			document.getElementById("box").style.fontFamily = "Times";
+		}
+		else if(value==5){
+			document.getElementById("box").style.fontFamily = "Calibri";
+		}
+		else if(value==6){
+			document.getElementById("box").style.fontFamily = "Impact";
+		}
+		else if(value==7){
+			document.getElementById("box").style.fontFamily = "Courier New";
+		}
+		else if(value==8){
+			document.getElementById("box").style.fontFamily = "Papyrus";
+		}
+		else if(value==9){
+			document.getElementById("box").style.fontFamily = "Brush Script MT";
+		}
+		else if(value==10){
+			document.getElementById("box").style.fontFamily = "Garamond";
+		}
+		else if(value==11){
+			document.getElementById("box").style.fontFamily = "Lucida Handwriting";
+		}
+	}
 		
 
 
