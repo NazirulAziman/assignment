@@ -23,12 +23,11 @@
 
 		.enterKey{
 			width: 400px; height: 240px;
-			border: 2px dashed;
 			display: block;
 			margin-top: 20px; margin-left: auto; margin-right: auto;
 		}
 
-		.enterKey input, button{
+		.enterKey input, button,textarea{
 			margin-top: 10px; margin-left: auto; margin-right: auto;
 			display: block;
 		}
@@ -70,6 +69,24 @@
 			border: 2px dashed blue;
 		}
 
+		#saveBtn:hover{
+			color: darkgreen;
+			background-color: lightgreen;
+			border-radius: 10px;
+		}
+
+		#loadBtn:hover{
+			color: darkblue;
+			background-color: cyan;
+			border-radius: 10px;
+		}
+
+		#clearBtn:hover{
+			color: yellow;
+			background-color: red;
+			border-radius: 10px;
+		}
+
 
 		/*-----------------------------------main here--------------------------------*/
 		.main{
@@ -79,6 +96,7 @@
 
 		.edit_box{
 			width: 600px; height: 700px;
+			background-color: white; 
 			background-size: 100% 100%;
 			margin-top: 50px; margin-left: auto; margin-right: auto;
 			display: block;
@@ -87,13 +105,18 @@
 		}
 
 		.edit_box h2{
-			margin-top: 110px; margin-left: auto; margin-right: auto;
+			margin-top: 10px; margin-left: auto; margin-right: auto;
 			display: block;
+			font-size: 1.2em;
+		}
+
+		.edit_box textarea{
+			width: 100px;
 		}
 
 		.logo_box{
 			width: 150px; height: 85px;
-			margin-top: 100px; margin-left: auto; margin-right: auto;
+			margin-top: 60px; margin-left: auto; margin-right: auto;
 			display: block; z-index: 1;
 		}
 
@@ -116,12 +139,9 @@
 			margin-top: 20px; margin-left:auto; margin-right: auto;
 			display: block;
 		}
-
-		#n1{
-			margin-top: 90px;
-		}
 		#e1{
-			margin-top: 110px;
+			margin-top: 10px;
+			font-size: 2em;
 		}
 		#h1, #a1, #d1{
 			margin-top: 10px;
@@ -135,7 +155,7 @@
 			}
 
 			.logo_box{
-				width: 90px; height: 90px;
+				width: 110px; height: 70px;
 				background-size: 100% 100%;
 				margin-top: 50px;
 			}
@@ -157,7 +177,7 @@
 			}
 
 			.edit_box h2{
-				margin-top: 60px;
+				margin-top: 10px;
 				font-size: 0.7em;
 			}
 			.names{
@@ -173,13 +193,31 @@
 				margin-top: 10px;
 			}
 
+			.logoList{
+				display: none;
+			}
+
+			.enterKey{
+				width: 500px; height: 200px;
+				margin-left: auto; margin-right: auto;
+				display: block;
+			}
+
+			.enterKey input, button, textarea{
+				width: 170px;
+				margin-left: 10px;
+				display: inline-block;
+			}
+
 
 			/*-----------------for preview div-------------*/
 			#n1{
 				margin-top: 60px;
 			}
 			#e1{
-				margin-top: 75px;
+				width:300px;
+				margin-top: 10px;
+				font-size: 1.4em;
 			}
 			#h1, #a1, #d1{
 				margin-top: 5px;
@@ -192,7 +230,7 @@
 		<img src="images/lg.png">
 		<a href="index.html">Home</a>
 		<a href="custom.html">Customization</a>
-		<a href="#">Gallery</a>
+		<a href="gallery.html">Gallery</a>
 		<a href="about_us.html">About us</a>
 	</header>
 
@@ -215,14 +253,15 @@
 			</div>
 
 			<div class="enterKey">
-				<input type="text" placeholder="Enter recipient's name" id="name">
+				<input type="text" placeholder="Enter company names" id="party">
 				<input type="text" placeholder="Enter name of the event" id="event">
+				<textarea placeholder="Enter event description" id="descriptions" rows="5" cos="2"></textarea>
 				<input type="text" placeholder="Enter address" id="address">
 				<input type="date" placeholder="Enter date" id="date">
-				<input type="text" placeholder="Enter hosted by names" id="host">
 
-				<button onclick="saveContent()">Save as favourite content</button>
-				<button onclick="loadContent()">Load favourite content</button>
+				<button onclick="saveContent()" id="saveBtn">Save as favourite content</button>
+				<button onclick="loadContent()" id="loadBtn">Load favourite content</button>
+				<button onclick="clearContent()" id="clearBtn">Clear favourite content</button>
 			</div>
 			<br>
 		</div>
@@ -235,11 +274,12 @@
 			<!------------------------------preview card here------------------------------->
 			<div class="edit_box" id="box">
 				<div class="logo_box" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-				<div class="names" id="n1" style="text-align: center;" placeholder="Enter recipient's name"></div>
-				<div class="names" id="h1" style="text-align: center;" placeholder="Enter hosted by names"></div>
+				<div class="names" id="p1" style="text-align: center; margin-top: 10px;" placeholder="Enter Company names"></div>
+				<h2>You're Invited to:</h2>
 				<div class="names" id="e1" style="text-align: center;" placeholder="Enter name of the event"></div>
-				<div class="names" id="a1" style="text-align: center;" placeholder="Enter address"></div>
-				<div class="names" id="d1" style="text-align: center;" placeholder="Enter date"></div>
+				<div class="names" id="ed1" style="text-align: center; margin-top: 20px;" placeholder="Enter event description"></div>
+				<div class="names" id="a1" style="text-align: center; margin-top: 110px;" placeholder="Enter address"></div>
+				<div class="names" id="d1" style="text-align: center; margin-top: 30px;" placeholder="Enter date"></div>
 			</div>
 
 		</div>
@@ -298,31 +338,52 @@
 		styleTwo.addEventListener("click",letter =>{document.getElementById("box").style.backgroundImage = "url(images/v4.png)";})
 
 		//-----------------------------localstorage save-------------------------------
-		var n = document.getElementById("name");
-		var h = document.getElementById("host");
+		var p = document.getElementById("party");
 		var e = document.getElementById("event");
+		var ed = document.getElementById("descriptions");
 		var a = document.getElementById("address");
 		var d = document.getElementById("date");
 
-		var display_n = document.getElementById("n1");
-		var display_h = document.getElementById("h1");
+		var display_p = document.getElementById("p1");
 		var display_e = document.getElementById("e1");
+		var display_ed = document.getElementById("ed1");
 		var display_a = document.getElementById("a1");
 		var display_d = document.getElementById("d1");
 
-		n.addEventListener('input', letter =>{display_n.textContent = letter.target.value;})
-		h.addEventListener('input', letter =>{display_h.textContent = letter.target.value;})
 		e.addEventListener('input', letter =>{display_e.textContent = letter.target.value;})
+		ed.addEventListener('input', letter =>{display_ed.textContent = letter.target.value;})
 		a.addEventListener('input', letter =>{display_a.textContent = letter.target.value;})
 		d.addEventListener('input', letter =>{display_d.textContent = letter.target.value;})
+		p.addEventListener('input', letter =>{display_p.textContent = letter.target.value;})
 
 
 		function saveContent(){
-		localStorage.setItem("name",display_n.textContent)
-		localStorage.setItem("host",display_h.textContent)
+		localStorage.setItem("party",display_p.textContent)
 		localStorage.setItem("event",display_e.textContent)
+		localStorage.setItem("descriptions",display_ed.textContent)
 		localStorage.setItem("address",display_a.textContent)
+		localStorage.setItem("date",display_d.textContent)
+		}
 
+		//-----------------------------------load function--------------------------------------
+		function loadContent() {
+			p.value = localStorage.getItem("party");
+			e.value = localStorage.getItem("event");
+			ed.value = localStorage.getItem("descriptions");
+			a.value = localStorage.getItem("address");
+			d.value = localStorage.getItem("date");
+
+		// --------------------automatically load to cards--------------------------
+			p1.innerHTML = localStorage.getItem("party");
+			e1.innerHTML = localStorage.getItem("event");
+			ed1.innerHTML = localStorage.getItem("descriptions");
+			a1.innerHTML = localStorage.getItem("address");
+			d1.innerHTML = localStorage.getItem("date");
+		}
+
+		//--------------------------------clear content----------------------------------
+		function clearContent(){
+			window.location.reload();
 		}
 
 	</script>
