@@ -55,6 +55,17 @@
 		border-radius: 10px;
 	}
 
+	.sideBox{
+		margin-top: 10px;
+		display: grid;
+		grid-template-areas: 
+		"cPick dpDown";
+	}
+
+	.dropDown{
+		margin-top: 20px;
+	}
+
 	
 
 	/*--------------------for main here----------------------*/
@@ -250,13 +261,21 @@
 			margin-left: 70px;
 		}
 
+		.colorPick{
+			margin-left: auto; margin-right: auto;
+			display: auto;
+		}
+
 		#bgColor, #fontColor, .colorLabel{
-			margin-left: 20px; margin-right: auto;
 			display: inline-block;
 		}
 
 		.side h2, .list_box{
 			display: none;
+		}
+
+		.sideBox{
+			display: block;
 		}
 
 		/*-------------------main here------------------------*/
@@ -340,35 +359,40 @@
 			<img src="images/G1.png" class="sticker" id="drag2" draggable="true" ondragstart="drag(event)">
 		</div>
 
+		<div class="sideBox">
 		<!--------------------------------color picker here----------------------------------->
-		<div id="colorPick">
-		<!------------------- for background ----------------->
-		<input type="color" id="bgColor" value="#ffffff">
-		<label class="colorLabel">Background Color</label>
+		<div id="colorPick" style="grid-area:cPick">
+			<!------------------- for background ----------------->
+			<input type="color" id="bgColor" value="#ffffff">
+			<label class="colorLabel">Background Color</label>
 
-		<!------------------ for font ----------------------->
-		<input type="color" id="fontColor" value="#000000">
-		<label class="colorLabel">Font Color</label>
+			<!------------------ for font ----------------------->
+			<input type="color" id="fontColor" value="#000000">
+			<label class="colorLabel">Font Color</label>
 		</div>
 
 
-		<!------------------------------------background change here---------------------------------->
-
-		<select onchange="styleChange(this.value)" id="btn">
-			<option value="0">Choose Background Theme</option>
-			<option value="1">Sports</option>
-			<option value="2">Parties</option>
-			<option value="3">Islamic</option>
-			<option value="4">Musics</option>
-		</select>
+		<div class="dropDown" style="grid-area:dpDown">
+			<!------------------------------------background change here---------------------------------->
+			<select onchange="styleChange(this.value)" id="btn">
+				<option value="0">Choose Background Theme</option>
+				<option value="1">Sports</option>
+				<option value="2">Parties</option>
+				<option value="3">Islamic</option>
+				<option value="4">Musics</option>
+			</select>
 
 		<!-------------------------------------font family here-------------------------------------->
-		<select onchange="fontChange(this.value)" id="btn">
-			<option value="0">Change font family</option>
-			<option value="1">Arial</option>
-			<option value="2">Impact</option>
-			<option value="3">Serif</option>
-		</select>
+			<select onchange="fontChange(this.value)" id="btn">
+				<option value="0">Change font family</option>
+				<option value="1">Arial</option>
+				<option value="2">Impact</option>
+				<option value="3">Serif</option>
+			</select>
+
+		</div>
+		</div>
+
 		<br>
 
 	</div>	
@@ -387,8 +411,10 @@
 			<div class="names" id="h1" style="text-align: center; margin-top: 30px;" placeholder="Enter hosted by names"></div>
 		</div>
 		<div class="send_box">
-			<input type="email" placeholder="Enter recipient gmail address" size="30" pattern=".+@gmail.com"required>
-			<button id="submitBtn">Submit to the recipient</button>
+			<form>
+			<input type="email" placeholder="Enter recipient gmail address" size="30" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+			<input type="submit" id="submitBtn" value="Submit to the recipient">
+			</form>
 		</div>
 	</div>
 
@@ -423,7 +449,6 @@
 			<button onclick="clearContent()" id="clearBtn">Clear favourite content</button>
 			</div>
 			<br>
-
 	</div>
 
 </div>
@@ -589,12 +614,12 @@
 		var btn = document.getElementById("submitBtn");
 		var span = document.getElementsByClassName("close")[0];
 
-		btn.onclick = function() {
-  		modal.style.display = "block";
+		btn.onclick = function(){
+  			modal.style.display = "block";
 		}
 
 		span.onclick = function() {
- 		modal.style.display = "none";
+ 			modal.style.display = "none";
 		}
 
 		window.onclick = function(event) {
