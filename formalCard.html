@@ -19,9 +19,8 @@
 
 		.enterKey{
 			width: 250px; height: 300px;
-			border: 2px dashed;
 			display: block;
-			margin-top: 70px; margin-left: auto; margin-right: auto;
+			margin-top: 30px; margin-left: auto; margin-right: auto;
 		}
 
 		.enterKey input, button, select{
@@ -30,7 +29,7 @@
 		}
 
 		.greetingsList{
-			width: 300px; height: 170px;
+			width: 300px; height: 210px;
 			display: block;
 			margin-top: 10px; margin-left: auto; margin-right: auto;
 			text-align: center;
@@ -65,6 +64,27 @@
 			color: yellow;
 		}
 
+		.selection{
+			width: 300px; height: 240px;
+			margin-top: 20px; margin-left: auto; margin-right: auto;
+			text-align: center;
+			border: 2px dashed;
+		}
+
+		.selection h3{
+			font-size: 1.3em;
+		}
+
+		.selection img{
+			display: inline-block;
+			margin-left: 5px;
+			width: 130px; height: 160px;
+		}
+
+		.selection img:hover{
+			border: 2px dashed blue;
+		}
+
 
 		/*-----------------------------------main here--------------------------------*/
 		.main{
@@ -83,8 +103,8 @@
 			vertical-align: center;
 		}
 
-		.edit_box1 h1{
-			font-size: 2em;
+		.edit_box1 h3{
+			font-size: 1em;
 			font-family: sans-serif;
 		}
 
@@ -104,11 +124,19 @@
 			margin-top: 100px;
 		}
 
+		#e1{
+			font-size: 2em;
+			font-family: tahoma;
+		}
+
 
 		/*-----------------------------for media here--------------------------------*/
 		@media screen and (max-width:600px){
+
+		/*-------------------------------main--------------------------------*/
 			.main{
 				margin-bottom: 60px;
+				height: 50vh;
 			}
 
 			.edit_box1{
@@ -128,8 +156,24 @@
 
 		/*----------------------------side--------------------------------*/
 			.enterKey { 
-			margin-top: 80px; margin-right: auto; margin-left: auto; margin-bottom: 50px;
+			margin-top: 30px; margin-right: auto; margin-left: auto; margin-bottom: 50px;
+			
 			}
+
+			.greetingsList h3{
+				font-size: 1.2em;
+			}
+
+			.enterKey{
+				width: 500px; height: 200px;
+			}
+
+			.enterKey input, button, select{
+				margin-left: auto; margin-right: auto;
+				display: inline-block;
+			}
+
+
 	</style>
 	<body>
 	<!-- -------------------------header here--------------------------- -->
@@ -156,10 +200,16 @@
 				<div id="greetFive" class="gList"style="margin-top:10px;">Good day!</div>
 			</div>
 
+			<div class="selection">
+				<h3>Choose your background:</h3>
+				<img src="images/v5.png" id="styleOne">
+				<img src="images/v6.jpg" id="styleTwo">
+			</div>
+
 			<div class="enterKey">
 				<input type="text" placeholder="Enter recipient's name" id="name">
 				<input type="text" placeholder="Enter name of the event" id="event">
-				<input type="text" placeholder="Enter address with postal code" id="place">
+				<input type="text" placeholder="Enter address" id="place">
 				<input type="date" placeholder="Enter date" id="date">
 				<input type="time" placeholder="Enter date" id="time">
 				<input type="text" placeholder="Enter hosted by names" id="host">
@@ -168,13 +218,6 @@
 				<button onclick="loadContent()" id="loadBtn">Load favourite content</button>
 				<button onclick="clearContent()" id="clearBtn">Clear favourite content</button>
 			</div>
-
-			<select id="selection" onchange="tempChange(this.value)">
-					<option value="0">choose template</option>
-					<option value="1">background 1</option>
-					<option value="2">background 2</option>			
-			</select>
-			<br>
 
 		</div>
 
@@ -185,9 +228,11 @@
 			<div class="edit_box1" id="box">
 				<h2 id="greetings_result" style="text-align: center;" placeholder="Choose greetings on the list"></h2>
 				<div class="names" id="n1" style="text-align: center; margin-top: 50px;" placeholder="Enter recipient's name"></div>
-				<h1 class="names" id="e1" style="text-align: center; margin-top: 50px;" placeholder="Enter event name"></h1>
-				<div class="names" id="h1" style="text-align: center; margin-top: 100px;" placeholder="Enter host names"></div>
-				<div class="names" id="d1" style="text-align: center; margin-top: 10px;" placeholder="Enter date"></div>
+				<h3>Your Invited for:</h3>
+				<h1 class="names" id="e1" style="text-align: center; margin-top: 30px;" placeholder="Enter event name"></h1>
+				<h3 style="text-align: center; margin-top: 70px;">Hosted by:</h3>
+				<div class="names" id="h1" style="text-align: center; margin-top: 20px;" placeholder="Enter host names"></div>
+				<div class="names" id="d1" style="text-align: center; margin-top: 60px;" placeholder="Enter date"></div>
 				<div class="names" id="t1" style="text-align: center; margin-top: 10px;" placeholder="Enter time"></div>
 				<div class="names" id="p1" style="text-align: center; margin-top: 10px;" placeholder="place"></div>
 			</div>
@@ -206,17 +251,11 @@
 
 	<!-- -----------------------------javascript here-------------------------- -->
 	<script type="text/javascript">
-	// --------------------------------change template-------------------------------
-	function tempChange(value){
-		var tc = document.getElementById("box")
+	// --------------------------------change template------------------------------
+		styleOne.addEventListener("click",letter =>{document.getElementById("box").style.backgroundImage = "url(images/v5.png)";})
+		styleTwo.addEventListener("click",letter =>{document.getElementById("box").style.backgroundImage = "url(images/v6.jpg)";})
 
-		if (value==1) {
-			tc.style.backgroundImage = "url(images/v5.png)";
-		}
-		else if(value==2){
-			tc.style.backgroundImage = "url(images/v6.jpg)";
-		}
-	}
+
 	// ------------------------local storage----------------------------
 		var n = document.getElementById("name");
 		var e = document.getElementById("event");
@@ -239,8 +278,6 @@
 		d.addEventListener('input', letter =>{display_d.textContent = letter.target.value;})
 		t.addEventListener('input', letter =>{display_t.textContent = letter.target.value;})
 		h.addEventListener('input', letter =>{display_h.textContent = letter.target.value;})
-
-		
 
 
 	//-----------------------------------save function--------------------------------------
