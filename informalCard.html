@@ -347,10 +347,10 @@
 	function saveContent() {
 		localStorage.setItem("name", n.value);
 		localStorage.setItem("event", e.value);
-		localStorage.setItem("place", p.value);
+		localStorage.setItem("place", a.value);
 		localStorage.setItem("date", d.value);
 		localStorage.setItem("time", t.value);
-		localStorage.setItem("place", p.value);
+		localStorage.setItem("address", a.value);
 		localStorage.setItem("host", h.value);
 
 	}
@@ -359,7 +359,7 @@
 	function loadContent() {
 		n.value = localStorage.getItem("name");
 		e.value = localStorage.getItem("event");
-		p.value = localStorage.getItem("place");
+		a.value = localStorage.getItem("address");
 		d.value = localStorage.getItem("date");
 		t.value = localStorage.getItem("time");
 		h.value = localStorage.getItem("host");
@@ -368,10 +368,15 @@
 		// --------------------automatically load to cards--------------------------
 		n1.innerHTML = localStorage.getItem("name");
 		e1.innerHTML = localStorage.getItem("event");
-		p1.innerHTML = localStorage.getItem("place");
+		a1.innerHTML = localStorage.getItem("address");
 		d1.innerHTML = localStorage.getItem("date");
 		t1.innerHTML = localStorage.getItem("time");
 		h1.innerHTML = localStorage.getItem("host");
+	}
+
+	//--------------------------------clear content----------------------------------
+	function clearContent(){
+		window.location.reload();
 	}
 
 	// ---------------------------------greetings list here------------------------------------
