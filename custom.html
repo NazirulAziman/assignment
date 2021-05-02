@@ -129,6 +129,11 @@
 		width: 400px; height: 100px;
 	}
 
+	#e1{
+		font-size: 1.7em;
+		font-weight: bold;
+	}
+
 	.names:hover{
 		border:1px dashed;
 	}
@@ -322,6 +327,10 @@
 			width: 300px;
 		}
 
+		#e1{
+			font-size: 1.2em;
+		}
+
 		.send_box{
 			height: 60px;
 			margin-top: 10px;
@@ -430,7 +439,7 @@
 			<h2 id="greetings_result" placeholder="Choose greetings on the list"></h2>
 			<div class="names" id="n1" style="text-align: center; margin-top: 5px;" placeholder="Enter recipient's name"></div>
 			<div class="sticker_box" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-			<div class="names" id="e1" style="text-align: center; margin-top: 10px; font-weight: bold; font-size: 1.7em;" placeholder="Enter name of the event"></div>
+			<div class="names" id="e1" style="text-align: center; margin-top: 10px; font-weight: bold;" placeholder="Enter name of the event"></div>
 			<div class="names" id="ed1" style="text-align: center; margin-top: 10px;" placeholder="Enter event description"></div>
 			<div class="names" id="d1" style="text-align: center; margin-top: 30px;" placeholder="Enter date"></div>
 			<div class="names" id="t1" style="text-align: center; margin-top: 20px;" placeholder="Enter time"></div>
@@ -628,6 +637,13 @@
 		greetFive.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Good Day!";})
 
 
+
+
+		localStorage.setItem("greetOne","السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ")
+		localStorage.setItem("greetTwo","Salam Sejahtera!")
+		localStorage.setItem("greetThree","Hello!")
+		localStorage.setItem("greetFour","Greetings!")
+		localStorage.setItem("greetFive","Good Day!")
 
 	//-------------------------------------save content--------------------------------
 	function saveContent(){
