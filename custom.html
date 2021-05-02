@@ -31,6 +31,14 @@
 		display: block;
 	}
 
+	.sticker:hover{
+		cursor: grab;
+	}
+
+	.sticker:active{
+		cursor: grabbing;
+	}
+
 	#bgColor,  #fontColor, .colorLabel{
 		margin-top: 10px; margin-left: auto; margin-right: auto;
 		display: block;
@@ -194,6 +202,7 @@
 		background-color: #1F201F;
 		border-radius: 20px;
 		color: yellow;
+		cursor: copy;
 	}
 
 	/*------------------for popup--------------------------*/
@@ -421,7 +430,7 @@
 			<h2 id="greetings_result" placeholder="Choose greetings on the list"></h2>
 			<div class="names" id="n1" style="text-align: center; margin-top: 5px;" placeholder="Enter recipient's name"></div>
 			<div class="sticker_box" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-			<div class="names" id="e1" style="text-align: center; margin-top: 10px;" placeholder="Enter name of the event"></div>
+			<div class="names" id="e1" style="text-align: center; margin-top: 10px; font-weight: bold; font-size: 1.7em;" placeholder="Enter name of the event"></div>
 			<div class="names" id="ed1" style="text-align: center; margin-top: 10px;" placeholder="Enter event description"></div>
 			<div class="names" id="d1" style="text-align: center; margin-top: 30px;" placeholder="Enter date"></div>
 			<div class="names" id="t1" style="text-align: center; margin-top: 20px;" placeholder="Enter time"></div>
@@ -633,7 +642,7 @@
 
 	function loadContent(){
 
-		//----------display content when click load------------
+		//----------display content on input when click load------------
 		n.value = localStorage.getItem("name");
 		e.value = localStorage.getItem("event");
 		ed.value = localStorage.getItem("descriptions");

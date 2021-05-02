@@ -34,15 +34,40 @@
 		}
 
 		.logoList{
-			width: 400px; height: 280px;
+			width: 300px; height: 200px;
 			border: 2px dashed black; border-radius: 10px;
-			margin-left: auto; margin-right: auto;
+			margin-top: 30px; margin-left: auto; margin-right: auto;
 			display: block;
 		}
 		.picLogo{
-			max-width: 200px;
-			margin-top: 10px; margin-left:auto; margin-right: auto;
-			display: block;
+			max-width: 130px;
+			margin-left:10px;
+			display: inline-block;
+		}
+
+		.picLogo:hover{
+			border: 2px dashed blue;
+		}
+
+		.selection{
+			width: 280px; height: 220px;
+			margin-top: 20px; margin-left: auto; margin-right: auto;
+			text-align: center;
+			border: 2px dashed;
+		}
+
+		.selection h3{
+			font-size: 1.3em;
+		}
+
+		.selection img{
+			display: inline-block;
+			margin-left: 5px;
+			width: 100px; height: 140px;
+		}
+
+		.selection img:hover{
+			border: 2px dashed blue;
 		}
 
 
@@ -67,8 +92,8 @@
 		}
 
 		.logo_box{
-			width: 200px; height: 130px;
-			margin-top: 60px; margin-left: auto; margin-right: auto;
+			width: 200px; height: 100px;
+			margin-top: 100px; margin-left: auto; margin-right: auto;
 			display: block; z-index: 1;
 		}
 
@@ -144,6 +169,10 @@
 				width: 90px; height: 90px;
 			}
 
+			.selection{
+				margin-top: 10px;
+			}
+
 
 			/*-----------------for preview div-------------*/
 			#n1{
@@ -172,18 +201,18 @@
 		
 		<!-----------------------------side here--------------------------------->
 		<div class="side">
-			<h2>Choose Logo Here :</h2>
+			
 			<div class="logoList">
+				<h2>Choose Logo Here :</h2>
 				<img src="images/pb1.png" id="drag1" class="picLogo" draggable="true" ondragstart="drag(event)">
 				<img src="images/pb2.png" id="drag2" class="picLogo" draggable="true" ondragstart="drag(event)">
 			</div>
 
-
-			<select onchange="templateChange(this.value)" class="selectList">
-				<option value="0">Choose Background Template</option>
-				<option value="1">Template A</option>
-				<option value="2">Template B</option>
-			</select>
+			<div class="selection">
+				<h3>Choose your background:</h3>
+				<img src="images/v1.png" id="styleOne">
+				<img src="images/v4.png" id="styleTwo">
+			</div>
 
 			<div class="enterKey">
 				<input type="text" placeholder="Enter recipient's name" id="name">
@@ -263,6 +292,10 @@
 				background_temp.style.backgroundImage = "url(images/v4.png)"
 			}
 		}
+
+		// --------------------------------change template------------------------------
+		styleOne.addEventListener("click",letter =>{document.getElementById("box").style.backgroundImage = "url(images/v1.png)";})
+		styleTwo.addEventListener("click",letter =>{document.getElementById("box").style.backgroundImage = "url(images/v4.png)";})
 
 		//-----------------------------localstorage save-------------------------------
 		var n = document.getElementById("name");
