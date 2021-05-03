@@ -296,7 +296,7 @@
 			<div class="enterKey">
 				<input type="text" placeholder="Enter recipient's name" id="name">
 				<input type="text" placeholder="Enter name of the event" id="event">
-				<input type="text" placeholder="Enter address" id="place">
+				<input type="text" placeholder="Enter address" id="address">
 				<input type="date" placeholder="Enter date" id="date">
 				<br>
 				<input type="time" placeholder="Enter date" id="time">
@@ -322,7 +322,7 @@
 				<div class="names" id="h1" style="text-align: center; margin-top: 20px;" placeholder="Enter host names"></div>
 				<div class="names" id="d1" style="text-align: center; margin-top: 60px;" placeholder="Enter date"></div>
 				<div class="names" id="t1" style="text-align: center; margin-top: 10px;" placeholder="Enter time"></div>
-				<div class="names" id="p1" style="text-align: center; margin-top: 10px;" placeholder="place"></div>
+				<div class="names" id="a1" style="text-align: center; margin-top: 10px;" placeholder="address"></div>
 			</div>
 			<div class="send_box">
 			<input type="email" placeholder="Enter recipient gmail address" size="30" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
@@ -361,22 +361,21 @@
 	// ------------------------local storage----------------------------
 		var n = document.getElementById("name");
 		var e = document.getElementById("event");
-		var p = document.getElementById("place");
+		var a = document.getElementById("address");
 		var d = document.getElementById("date");
 		var t = document.getElementById("time");
 		var h = document.getElementById("host");
-		var g = document.querySelector('.gList');
 
 		var display_n = document.getElementById("n1");
 		var display_e = document.getElementById("e1");
-		var display_p = document.getElementById("p1")
+		var display_a = document.getElementById("a1")
 		var display_d = document.getElementById("d1");
 		var display_t = document.getElementById("t1");
 		var display_h = document.getElementById("h1");
 
 		n.addEventListener('input', letter =>{display_n.textContent = letter.target.value;})
 		e.addEventListener('input', letter =>{display_e.textContent = letter.target.value;})
-		p.addEventListener('input', letter =>{display_p.textContent = letter.target.value;})
+		a.addEventListener('input', letter =>{display_a.textContent = letter.target.value;})
 		d.addEventListener('input', letter =>{display_d.textContent = letter.target.value;})
 		t.addEventListener('input', letter =>{display_t.textContent = letter.target.value;})
 		h.addEventListener('input', letter =>{display_h.textContent = letter.target.value;})
@@ -404,10 +403,9 @@
 	function saveContent() {
 		localStorage.setItem("name", n.value);
 		localStorage.setItem("event", e.value);
-		localStorage.setItem("place", p.value);
+		localStorage.setItem("address", a.value);
 		localStorage.setItem("date", d.value);
 		localStorage.setItem("time", t.value);
-		localStorage.setItem("place", p.value);
 		localStorage.setItem("host", h.value);
 
 	}
@@ -416,7 +414,7 @@
 	function loadContent() {
 		n.value = localStorage.getItem("name");
 		e.value = localStorage.getItem("event");
-		p.value = localStorage.getItem("place");
+		a.value = localStorage.getItem("address");
 		d.value = localStorage.getItem("date");
 		t.value = localStorage.getItem("time");
 		h.value = localStorage.getItem("host");
