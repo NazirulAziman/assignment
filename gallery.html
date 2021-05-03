@@ -7,7 +7,79 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="style.css">
 <style type="text/css">
+	h1{
+		font-size: 3em;
+		text-align: center;
+	}
 
+	.container{
+		margin-top: 10px; margin-left: 350px;
+		display: grid;
+		grid-gap: 20px;
+		grid-template-columns: repeat(4,30vh);
+		grid-template-rows: repeat(2,35vh);
+		grid-template-areas: 
+		"one two three four"
+		"five six seven eight";
+
+	}
+
+	.box{
+		background-size: cover;
+		border: 1px;
+		border-radius: 10px;
+		text-align: center;
+		transition: transform 0.8s ease-out;
+	}
+
+	.box:hover{
+		transform: rotateX(20deg);
+	}
+
+	#item1{
+		background-image: url(images/f1.PNG);
+	}
+
+	#item2{
+		background-image: url(images/f2.PNG);
+	}
+
+	#item3{
+		background-image: url(images/f3.PNG);
+	}
+
+	#item4{
+		background-image: url(images/f4.PNG);
+	}
+
+	#item5{
+		background-image: url(images/f5.PNG);
+	}
+
+	#item6{
+		background-image: url(images/f6.PNG);
+	}
+
+	#item7{
+		background-image: url(images/f7.PNG);
+	}
+
+	#item8{
+		background-image: url(images/f8.PNG);
+	}
+
+	@media screen and (max-width: 600px){
+		.container{
+			margin-left: 10px;
+			grid-template-columns: repeat(2,1fr);
+			grid-template-rows: repeat(4,31vh);
+			grid-template-areas: 
+			"one two"
+			"three four"
+			"five six"
+			"seven eight";
+		}
+	}
 </style>
 
 <body>
@@ -20,7 +92,17 @@
 	<a href="about_us.html">About us</a>
 </header>
 
-
+<h1>Gallery</h1>
+<div class="container">
+	<div class="box" id="item1" style="grid-area:one"></div>
+	<div class="box" id="item2" style="grid-area:two"></div>
+	<div class="box" id="item3" style="grid-area:three"></div>
+	<div class="box" id="item4" style="grid-area:four"></div>
+	<div class="box" id="item5" style="grid-area:five"></div>
+	<div class="box" id="item6" style="grid-area:six"></div>
+	<div class="box" id="item7" style="grid-area:seven"></div>
+	<div class="box" id="item8" style="grid-area:eight"></div>
+</div>
 
 <footer>
 	<h3>@copyright 2021</h3>

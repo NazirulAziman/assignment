@@ -87,10 +87,15 @@
 			border-radius: 10px;
 		}
 
+		#btn{
+			margin-top: 10px; margin-left: auto; margin-right: auto;
+			display: block;
+		}
+
 
 		/*-----------------------------------main here--------------------------------*/
 		.main{
-			height: 100vh;
+			height: 90vh;
 			flex: 80%;
 		}
 
@@ -252,6 +257,16 @@
 				<img src="images/v4.png" id="styleTwo">
 			</div>
 
+			<!-------------------------------------font family here-------------------------------------->
+			<select onchange="fontFamily(this.value)" id="btn">
+				<option value="0">Choose Font Style</option>
+				<option value="1">Arial</option>
+				<option value="2">Tahoma</option>
+				<option value="3">Helvetica</option>
+				<option value="4">Times New Roman</option>
+				<option value="5">Calibri</option>
+			</select>
+
 			<div class="enterKey">
 				<input type="text" placeholder="Enter company names" id="party">
 				<input type="text" placeholder="Enter name of the event" id="event">
@@ -330,6 +345,25 @@
 			}
 			else if(value==2) {
 				background_temp.style.backgroundImage = "url(images/v4.png)"
+			}
+		}
+
+		//------------------------Change font family---------------------
+		function fontFamily(value){
+			if(value==1){
+				document.getElementById("box").style.fontFamily = "Arial";
+			}
+			else if(value==2){
+				document.getElementById("box").style.fontFamily = "Tahoma";
+			}
+			else if(value==3){
+				document.getElementById("box").style.fontFamily = "Helvetica";
+			}
+			else if(value==4){
+				document.getElementById("box").style.fontFamily = "Times";
+			}
+			else if(value==5){
+				document.getElementById("box").style.fontFamily = "Calibri";
 			}
 		}
 
