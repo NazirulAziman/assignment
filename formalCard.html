@@ -90,6 +90,18 @@
 			display: block;
 		}
 
+		.send_box{
+			width: 300px; height: 60px;
+			display: block;
+			margin-top: 20px; margin-left: auto; margin-right: auto;
+			border:1px dashed black;
+		}
+
+		.send_box input, .send_box button{
+			display: block;
+			margin-top: 5px; margin-left: auto; margin-right: auto;
+		}
+
 
 		/*-----------------------------------main here--------------------------------*/
 		.main{
@@ -132,6 +144,18 @@
 		#e1{
 			font-size: 2em;
 			font-family: tahoma;
+		}
+
+		.send_box{
+			width: 300px; height: 60px;
+			display: block;
+			margin-top: 20px; margin-left: auto; margin-right: auto;
+			border:1px dashed black;
+		}
+
+		.send_box input, .send_box button{
+			display: block;
+			margin-top: 5px; margin-left: auto; margin-right: auto;
 		}
 
 
@@ -188,6 +212,45 @@
 			}
 		}
 
+		/*------------------for popup--------------------------*/
+		.modal {
+  			display: none; 
+  			position: fixed; 
+  			left: 0;
+  			top: 0;
+  			width: 100%; height: 100%; 
+  			background-color: rgba(0,0,0,0.4); 
+  			padding-top: 100px;
+  			text-align: center; font-size: 1.3em; 
+ 
+		}
+
+		.modal-content {
+  			background-color: #fefefe;
+  			margin: auto;
+  			padding: 20px;
+  			border: 1px solid #888;
+  			width: 80%;
+  			-webkit-animation-name: slideIn;
+  			-webkit-animation-duration: 0.4s;
+  			animation-name: slideIn;
+  			animation-duration: 0.4s
+		}
+
+		.close {
+  			color: #aaaaaa;
+  			float: right;
+  			font-size: 28px;
+  			font-weight: bold;
+		}
+
+		.close:hover,
+		.close:focus {
+  			color: red;
+  			text-decoration: none;
+  			cursor: pointer;
+		}
+
 	</style>
 	<body>
 	<!-- -------------------------header here--------------------------- -->
@@ -241,7 +304,7 @@
 
 				<button onclick="saveContent()" id="saveBtn">Save as favourite content</button>
 				<button onclick="loadContent()" id="loadBtn">Load favourite content</button>
-				<button onclick="clearContent()" id="clearBtn">Clear favourite content</button>
+				<button onclick="clearContent()" id="clearBtn">Reset</button>
 			</div>
 
 		</div>
@@ -261,9 +324,22 @@
 				<div class="names" id="t1" style="text-align: center; margin-top: 10px;" placeholder="Enter time"></div>
 				<div class="names" id="p1" style="text-align: center; margin-top: 10px;" placeholder="place"></div>
 			</div>
+			<div class="send_box">
+			<input type="email" placeholder="Enter recipient gmail address" size="30" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+			<input type="submit" id="submitBtn" value="Submit to the recipient">
+		</div>
 
 		</div>
 
+	</div>
+
+	<!----------------------------popup here--------------------------->
+
+	<div id="popup" class="modal">
+  	<div class="modal-content">
+    	<span class="close">&times;</span>
+    	<p>Your card is submitted to the recipient!</p>
+  	</div>
 	</div>
 
 
@@ -366,6 +442,26 @@
 		greetThree.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Hello!";})
 		greetFour.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Greetings!";})
 		greetFive.addEventListener("click", letter => {document.getElementById("greetings_result").innerHTML = "Good Day!";})
+
+		//-----------------------modal box-----------------------
+
+		var modal = document.getElementById("popup");
+		var btn = document.getElementById("submitBtn");
+		var span = document.getElementsByClassName("close")[0];
+
+		btn.onclick = function(){
+  			modal.style.display = "block";
+		}
+
+		span.onclick = function() {
+ 			modal.style.display = "none";
+		}
+
+		window.onclick = function(event) {
+  			if (event.target == modal) {
+    		modal.style.display = "none";
+  			}
+		}
 
 	</script>
 

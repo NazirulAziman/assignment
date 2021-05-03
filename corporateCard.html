@@ -152,6 +152,57 @@
 			margin-top: 10px;
 		}	
 
+		.send_box{
+			width: 300px; height: 60px;
+			display: block;
+			margin-top: 20px; margin-left: auto; margin-right: auto;
+			border:1px dashed black;
+		}
+
+		.send_box input, .send_box button{
+			display: block;
+			margin-top: 5px; margin-left: auto; margin-right: auto;
+		}
+
+		/*------------------for popup--------------------------*/
+		.modal {
+  			display: none; 
+  			position: fixed; 
+  			left: 0;
+  			top: 0;
+  			width: 100%; height: 100%; 
+  			background-color: rgba(0,0,0,0.4); 
+  			padding-top: 100px;
+  			text-align: center; font-size: 1.3em; 
+ 
+		}
+
+		.modal-content {
+  			background-color: #fefefe;
+  			margin: auto;
+  			padding: 20px;
+  			border: 1px solid #888;
+  			width: 80%;
+  			-webkit-animation-name: slideIn;
+  			-webkit-animation-duration: 0.4s;
+  			animation-name: slideIn;
+  			animation-duration: 0.4s
+		}
+
+		.close {
+  			color: #aaaaaa;
+  			float: right;
+  			font-size: 28px;
+  			font-weight: bold;
+		}
+
+		.close:hover,
+		.close:focus {
+  			color: red;
+  			text-decoration: none;
+  			cursor: pointer;
+		}
+
 
 		/*-----------------------------for media here--------------------------------*/
 		@media screen and (max-width:600px){
@@ -276,7 +327,7 @@
 
 				<button onclick="saveContent()" id="saveBtn">Save as favourite content</button>
 				<button onclick="loadContent()" id="loadBtn">Load favourite content</button>
-				<button onclick="clearContent()" id="clearBtn">Clear favourite content</button>
+				<button onclick="clearContent()" id="clearBtn">Reset</button>
 			</div>
 			<br>
 		</div>
@@ -296,6 +347,10 @@
 				<div class="names" id="a1" style="text-align: center; margin-top: 110px;" placeholder="Enter address"></div>
 				<div class="names" id="d1" style="text-align: center; margin-top: 30px;" placeholder="Enter date"></div>
 			</div>
+			<div class="send_box">
+			<input type="email" placeholder="Enter recipient gmail address" size="30">
+			<input type="submit" id="submitBtn" value="Submit to the recipient">
+		</div>
 
 		</div>
 
@@ -418,6 +473,26 @@
 		//--------------------------------clear content----------------------------------
 		function clearContent(){
 			window.location.reload();
+		}
+
+		//-----------------------modal box-----------------------
+
+		var modal = document.getElementById("popup");
+		var btn = document.getElementById("submitBtn");
+		var span = document.getElementsByClassName("close")[0];
+
+		btn.onclick = function(){
+  			modal.style.display = "block";
+		}
+
+		span.onclick = function() {
+ 			modal.style.display = "none";
+		}
+
+		window.onclick = function(event) {
+  			if (event.target == modal) {
+    		modal.style.display = "none";
+  			}
 		}
 
 	</script>
