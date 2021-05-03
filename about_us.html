@@ -39,6 +39,45 @@
 		border:1px solid;
 	}
 
+	/*------------------for popup--------------------------*/
+	.modal {
+  		display: none; 
+  		position: fixed; 
+  		left: 0;
+  		top: 0;
+  		width: 100%; height: 100%; 
+  		background-color: rgba(0,0,0,0.4); 
+  		padding-top: 100px;
+  		text-align: center; font-size: 1.3em; 
+ 
+	}
+
+	.modal-content {
+  		background-color: #fefefe;
+  		margin: auto;
+  		padding: 20px;
+  		border: 1px solid #888;
+  		width: 80%;
+  		-webkit-animation-name: slideIn;
+  		-webkit-animation-duration: 0.4s;
+  		animation-name: slideIn;
+  		animation-duration: 0.4s
+	}
+
+	.close {
+  		color: #aaaaaa;
+  		float: right;
+  		font-size: 28px;
+  		font-weight: bold;
+	}
+
+	.close:hover,
+	.close:focus {
+  		color: red;
+  		text-decoration: none;
+  		cursor: pointer;
+	}
+
 	@media screen and (max-width: 600px){
 		.wraps{
 			grid-template-areas: 
@@ -93,7 +132,7 @@
 			<input type="text" placeholder="Enter subject" style="margin-top: 10px;">
 			<textarea placeholder="Your Message" style="margin-top: 10px;" rows="10" cols="35"></textarea>
 			<br>
-			<button style="margin-top: 10px;">Send message</button>
+			<button style="margin-top: 10px;" id="submitBtn">Send message</button>
 		</div>
 	</div>
 
@@ -113,6 +152,14 @@
 		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 	</div>
 
+	<!----------------------------popup here--------------------------->
+
+	<div id="popup" class="modal">
+  	<div class="modal-content">
+    	<span class="close">&times;</span>
+    	<p>Your message has been sent to the developer!</p>
+  	</div>
+	</div>
 
 
 </div>
@@ -123,4 +170,27 @@
 </footer>
 
 </body>
+
+<script type="text/javascript">
+	//-----------------------modal box-----------------------
+
+		var modal = document.getElementById("popup");
+		var btn = document.getElementById("submitBtn");
+		var span = document.getElementsByClassName("close")[0];
+
+		btn.onclick = function(){
+  			modal.style.display = "block";
+		}
+
+		span.onclick = function() {
+ 			modal.style.display = "none";
+		}
+
+		window.onclick = function(event) {
+  			if (event.target == modal) {
+    		modal.style.display = "none";
+  			}
+		}
+</script>
+
 </html>
